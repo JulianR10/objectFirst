@@ -17,13 +17,27 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Object First — Webinar: Perché la resilienza dei dati è fondamentale per la sopravvivenza aziendale">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Fuente no bloqueante: si Google Fonts no responde, entra la pila del sistema -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap"></noscript>
+  <!-- Graphik Trial local (misma familia que objectfirst.com): preload + @font-face en <style> -->
+  <link rel="preload" href="fonts/Graphik-Regular-Trial.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="fonts/Graphik-Semibold-Trial.otf" as="font" type="font/otf" crossorigin>
   <style>
+/* Graphik Trial (400/500/600): misma familia y pesos que objectfirst.com.
+   Si la licencia Trial no cubre producción, el fallback es Inter/sistema. */
+@font-face {
+  font-family: "Graphik";
+  src: url("fonts/Graphik-Regular-Trial.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Graphik";
+  src: url("fonts/Graphik-Medium-Trial.otf") format("opentype");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Graphik";
+  src: url("fonts/Graphik-Semibold-Trial.otf") format("opentype");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
 /* Tokens oficiales: Brand Guidelines v1.0 (2025).
    Absolute Black #161515 · White #FFFFFF · Resilient Purple #5B00B3 ·
    Cadmium Orange #FF6131 · Veeam Green #00AD4E · Breach Red #E03400. */
@@ -41,7 +55,7 @@
   --red: #e03400;
   --radius: 16px;
   --wrap: 1140px;
-  --font: "Inter Tight", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --font: "Graphik", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   --ease: cubic-bezier(0.22, 0.9, 0.28, 1);
 }
 * { box-sizing: border-box; }
@@ -52,7 +66,7 @@ body {
   font-feature-settings: "salt" on;
   color: var(--ink);
   background: #ffffff;
-  line-height: 1.6;
+  line-height: 1.4;
   -webkit-font-smoothing: antialiased;
 }
 /* Variante chiara: fondo blanco de marca, sin gradiente oscuro. */
@@ -92,7 +106,7 @@ body::before {
 .btn:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
   outline: 3px solid var(--orange); outline-offset: 3px;
 }
-.btn-small { padding: 10px 22px; font-size: 0.88rem; border-radius: 10px; }
+.btn-small { padding: 10px 22px; font-size: 0.8125rem; border-radius: 10px; }
 .btn-full { width: 100%; }
 .btn[disabled] { opacity: 0.7; cursor: wait; transform: none; }
 .hero { position: relative; padding: 96px 0 84px; z-index: 1; }
@@ -104,8 +118,8 @@ body::before {
   border-radius: 999px; padding: 8px 18px; margin-bottom: 24px;
 }
 .hero h1 {
-  font-size: clamp(1.9rem, 4.2vw, 3.1rem); font-weight: 600;
-  line-height: 1.1; letter-spacing: -0.04em; margin: 0 0 24px; color: var(--ink);
+  font-size: clamp(2.5rem, 6vw, 4.75rem); font-weight: 600;
+  line-height: 1.05; letter-spacing: -0.025em; margin: 0 0 24px; color: var(--ink);
 }
 .hero-meta { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 30px; }
 .meta-pill {
@@ -178,7 +192,7 @@ body.date-ok .date-tbc { display: none; }
   box-shadow: 0 24px 64px rgba(22, 21, 21, 0.12);
   padding: 34px 30px; overflow: hidden;
 }
-.form-card h2 { position: relative; margin: 0 0 22px; color: var(--ink); font-weight: 600; letter-spacing: -0.02em; }
+.form-card h2 { position: relative; margin: 0 0 22px; color: var(--ink); font-size: 1.5625rem; line-height: 1.3; letter-spacing: -0.02em; font-weight: 600; }
 .form-card form { position: relative; }
 .field { margin-bottom: 15px; }
 .field label, .field legend { display: block; font-weight: 500; font-size: 0.9rem; margin-bottom: 6px; color: #2b2833; }
@@ -225,6 +239,7 @@ fieldset.field { border: 0; padding: 0; }
   .content-grid { grid-template-columns: 1fr; gap: 40px; }
   .form-card { position: static; }
   .hero { padding: 68px 0 60px; }
+  .hero h1 { font-size: 2.5rem; }
   .stats-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
   .header-nav { display: none; }
   .cd-cell { min-width: 70px; }
