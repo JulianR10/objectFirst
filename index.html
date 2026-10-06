@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- BUILD v3 2026-10-05: copy plan 2Leap (fecha 11nov, sin live, form nuevo) -->
+<!-- BUILD v3-light 2026-10-06: variante chiara (fondos claros) su light-theme -->
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perché la resilienza dei dati è fondamentale per la sopravvivenza aziendale | Webinar Object First</title>
   <meta name="description" content="Webinar: perché la resilienza dei dati è fondamentale per la sopravvivenza aziendale. Dati Omdia 2026, Zero Trust e Immutabilità assoluta.">
-  <meta name="theme-color" content="#161515">
+  <meta name="theme-color" content="#fbf9ff">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Perché la resilienza dei dati è fondamentale per la sopravvivenza aziendale">
@@ -31,12 +31,12 @@
   --black: #161515;
   --purple: #5b00b3;
   --orange: #ff6131;
-  --orange-soft: rgba(255, 97, 49, 0.14);
-  --ink: #ffffff;
-  --muted: #c9c9c9;
-  --faint: #8f8f8f;
-  --line: rgba(255, 255, 255, 0.14);
-  --card: rgba(255, 255, 255, 0.05);
+  --orange-soft: rgba(255, 97, 49, 0.12);
+  --ink: #161515;
+  --muted: #4c4756;
+  --faint: #6f6a7a;
+  --line: rgba(22, 21, 21, 0.14);
+  --card: #ffffff;
   --green: #00ad4e;
   --red: #e03400;
   --radius: 16px;
@@ -51,7 +51,7 @@ body {
   font-family: var(--font);
   font-feature-settings: "salt" on;
   color: var(--ink);
-  background: var(--black);
+  background: #fbf9ff;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -62,9 +62,9 @@ body::before {
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(1000px 560px at 10% -6%, rgba(91, 0, 179, 0.5), transparent 62%),
-    radial-gradient(760px 480px at 90% 6%, rgba(255, 97, 49, 0.13), transparent 60%),
-    linear-gradient(var(--black), #190f24 55%, var(--black));
+    radial-gradient(1000px 560px at 10% -6%, rgba(91, 0, 179, 0.12), transparent 62%),
+    radial-gradient(760px 480px at 90% 6%, rgba(255, 97, 49, 0.10), transparent 60%),
+    linear-gradient(#ffffff, #f3ecff 55%, #fbf9ff);
   pointer-events: none;
 }
 .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
@@ -115,7 +115,7 @@ body::before {
   right: 0;
   bottom: 0;
   width: 50%;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1.5px, transparent 1.5px);
+  background-image: radial-gradient(rgba(91, 0, 179, 0.14) 1.5px, transparent 1.5px);
   background-size: 32px 32px;
   mask-image: linear-gradient(to left, rgba(0,0,0,0.8), rgba(0,0,0,0));
   -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.8), rgba(0,0,0,0));
@@ -131,13 +131,14 @@ body::before {
 }
 .hero h1 {
   font-size: clamp(1.9rem, 4.2vw, 3.1rem); font-weight: 600;
-  line-height: 1.1; letter-spacing: -0.04em; margin: 0 0 24px; color: #fff;
+  line-height: 1.1; letter-spacing: -0.04em; margin: 0 0 24px; color: var(--ink);
 }
 .hero-meta { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 30px; }
 .meta-pill {
   display: inline-block; font-size: 0.95rem; font-weight: 500; color: var(--ink);
   background: var(--card); border: 1px solid var(--line);
   border-radius: 999px; padding: 8px 18px;
+  box-shadow: 0 4px 14px rgba(22, 21, 21, 0.05);
 }
 /* Fecha: por defecto se muestra la variante TBC (sin día). Solo con fecha
    confirmada (body.date-ok, puesto por JS) se muestra el día. */
@@ -150,31 +151,33 @@ body.date-ok .date-tbc { display: none; }
   min-width: 84px; text-align: center;
   background: var(--card); border: 1px solid var(--line);
   border-radius: 14px; padding: 12px 8px 10px;
+  box-shadow: 0 4px 14px rgba(22, 21, 21, 0.05);
 }
 .cd-num { display: block; font-size: 1.9rem; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.1; }
 .cd-lab { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
 .cd-note {
   margin: 0;
   font-weight: 600;
-  color: #ffb59d;
+  color: #b93e00;
 }
-.stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(91, 0, 179, 0.08); }
+.stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(91, 0, 179, 0.06); }
 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; padding-top: 44px; padding-bottom: 20px; }
 .stats-source { margin: 0 auto; padding-bottom: 36px; font-size: 0.85rem; color: var(--faint); text-align: right; }
-.stat-num { margin: 0; font-size: clamp(2.4rem, 4vw, 3.4rem); font-weight: 600; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; color: #fff; }
+.stat-num { margin: 0; font-size: clamp(2.4rem, 4vw, 3.4rem); font-weight: 600; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; color: var(--ink); }
 .stat-lab { margin: 8px 0 0; color: var(--muted); font-size: 0.98rem; }
 .content-grid { display: grid; grid-template-columns: 1fr 400px; gap: 56px; padding-top: 64px; padding-bottom: 88px; align-items: start; }
-.question { font-size: clamp(1.3rem, 2.2vw, 1.6rem); font-weight: 600; letter-spacing: -0.02em; color: #fff; margin-top: 0; }
-.body-copy p { color: #e9e4f5; }
-.hook { font-size: 1.12rem; font-weight: 500; color: #fff; }
-.closing { font-weight: 600; color: #fff; border-left: 3px solid var(--orange); padding-left: 16px; }
+.question { font-size: clamp(1.3rem, 2.2vw, 1.6rem); font-weight: 600; letter-spacing: -0.02em; color: var(--ink); margin-top: 0; }
+.body-copy p { color: #3d3847; }
+.hook { font-size: 1.12rem; font-weight: 500; color: var(--ink); }
+.closing { font-weight: 600; color: var(--ink); border-left: 3px solid var(--orange); padding-left: 16px; }
 .takeaways { display: grid; gap: 16px; margin: 32px 0; }
 .card {
   position: relative; background: var(--card); border: 1px solid var(--line);
   border-radius: var(--radius); padding: 22px 24px 22px 88px; overflow: hidden;
+  box-shadow: 0 10px 28px rgba(22, 21, 21, 0.06);
   transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), background 0.3s var(--ease);
 }
-.card:hover { transform: translateY(-3px); border-color: rgba(255, 97, 49, 0.5); background: rgba(255, 97, 49, 0.07); }
+.card:hover { transform: translateY(-3px); border-color: rgba(255, 97, 49, 0.5); background: #fff7f3; }
 .card h3 { margin: 0; font-size: 1.08rem; font-weight: 500; line-height: 1.45; }
 .card-num {
   position: absolute; left: 24px; top: 50%; transform: translateY(-50%);
@@ -185,69 +188,69 @@ body.date-ok .date-tbc { display: none; }
   display: flex; gap: 18px; align-items: center;
   background: var(--card); border: 1px solid var(--line);
   border-radius: var(--radius); padding: 24px; margin: 36px 0;
+  box-shadow: 0 10px 28px rgba(22, 21, 21, 0.06);
 }
 .speaker-avatar {
   flex: 0 0 72px; width: 72px; height: 72px; border-radius: 50%; overflow: hidden;
   border: 2px solid rgba(91, 0, 179, 0.9); box-shadow: 0 0 24px rgba(91, 0, 179, 0.45);
 }
 .speaker-avatar svg { display: block; width: 100%; height: 100%; }
-.speaker-name { font-weight: 600; font-size: 1.1rem; margin: 0; color: #fff; }
+.speaker-name { font-weight: 600; font-size: 1.1rem; margin: 0; color: var(--ink); }
 .speaker-role { margin: 2px 0 0; color: var(--muted); }
 .form-card {
   position: sticky; top: 92px;
-  background: rgba(29, 20, 38, 0.94);
+  background: #ffffff;
   border: 1px solid var(--line); border-radius: 20px;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 24px 64px rgba(22, 21, 21, 0.12);
   padding: 34px 30px; overflow: hidden;
 }
 .form-glow {
   position: absolute; top: -70px; left: 10%; right: 10%; height: 140px;
-  background: radial-gradient(ellipse, rgba(91, 0, 179, 0.5), transparent 70%);
+  background: radial-gradient(ellipse, rgba(91, 0, 179, 0.18), transparent 70%);
   pointer-events: none;
 }
-.form-card h2 { position: relative; margin: 0 0 22px; color: #fff; font-weight: 600; letter-spacing: -0.02em; }
+.form-card h2 { position: relative; margin: 0 0 22px; color: var(--ink); font-weight: 600; letter-spacing: -0.02em; }
 .form-card form { position: relative; }
 .field { margin-bottom: 15px; }
-.field label, .field legend { display: block; font-weight: 500; font-size: 0.9rem; margin-bottom: 6px; color: #f0eafb; }
+.field label, .field legend { display: block; font-weight: 500; font-size: 0.9rem; margin-bottom: 6px; color: #2b2833; }
 fieldset.field { border: 0; padding: 0; }
 .field input[type="text"], .field input[type="email"], .field select {
-  width: 100%; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 10px;
+  width: 100%; border: 1px solid rgba(22, 21, 21, 0.2); border-radius: 10px;
   padding: 12px 13px; font-size: 1rem; font-family: inherit;
-  background: rgba(255, 255, 255, 0.07); color: var(--ink);
+  background: #f6f2ff; color: var(--ink);
   transition: border-color 0.2s var(--ease), background 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
 .field select option { color: #111; }
 .field input:focus, .field select:focus {
-  border-color: var(--orange); background: rgba(255, 255, 255, 0.1);
+  border-color: var(--orange); background: #ffffff;
   box-shadow: 0 0 0 3px rgba(255, 97, 49, 0.25); outline: none;
 }
 .radio, .checkbox { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; margin-bottom: 8px; cursor: pointer; }
 .radio input, .checkbox input { margin-top: 4px; accent-color: var(--orange); width: 17px; height: 17px; flex-shrink: 0; }
 .consent { font-size: 0.86rem; color: var(--muted); }
-/* Errores: bordes Breach Red #E03400. Texto #ff8a70 (ratio WCAG 7.73:1 medido;
-   #E03400 sobre este fondo da 3.95 y falla 4.5 para texto pequeño). */
-.field-error { display: none; color: #ff8a70; font-size: 0.85rem; margin: 6px 0 0; }
+/* Errores (variante chiara): texto #c02a00 sobre fondo claro. */
+.field-error { display: none; color: #c02a00; font-size: 0.85rem; margin: 6px 0 0; }
 .field.invalid .field-error { display: block; }
 .field.invalid input, .field.invalid select { border-color: var(--red); }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .under-btn, .form-foot { font-size: 0.82rem; color: var(--muted); }
-.under-btn a { color: #fff; }
-.noscript-note { font-size: 0.9rem; color: #ffb59d; background: var(--orange-soft); border: 1px solid rgba(255, 97, 49, 0.45); border-radius: 10px; padding: 10px 14px; }
+.under-btn a { color: var(--purple); }
+.noscript-note { font-size: 0.9rem; color: #a33300; background: var(--orange-soft); border: 1px solid rgba(255, 97, 49, 0.45); border-radius: 10px; padding: 10px 14px; }
 .form-panel { position: relative; text-align: center; }
-.form-panel h3 { color: #fff; margin: 14px 0 10px; font-weight: 600; }
+.form-panel h3 { color: var(--ink); margin: 14px 0 10px; font-weight: 600; }
 .form-panel p { color: var(--muted); }
 .check svg { width: 72px; height: 72px; fill: none; stroke: var(--green); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
 .check circle { stroke-dasharray: 157; stroke-dashoffset: 157; animation: draw 0.7s var(--ease) forwards; }
 .check path { stroke-dasharray: 40; stroke-dashoffset: 40; animation: draw 0.45s var(--ease) 0.55s forwards; }
 @keyframes draw { to { stroke-dashoffset: 0; } }
-.site-footer { border-top: 1px solid var(--line); background: rgba(0, 0, 0, 0.35); padding: 44px 0; }
+.site-footer { border-top: 1px solid var(--line); background: #ffffff; padding: 44px 0; }
 .footer-inner { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
 .footer-brand { display: flex; align-items: center; gap: 14px; }
 .footer-brand svg { height: 30px; width: auto; display: block; }
-.tagline { font-weight: 600; font-size: 0.95rem; letter-spacing: -0.01em; color: #fff; border-left: 1px solid var(--line); padding-left: 14px; }
+.tagline { font-weight: 600; font-size: 0.95rem; letter-spacing: -0.01em; color: var(--ink); border-left: 1px solid var(--line); padding-left: 14px; }
 .social { display: flex; gap: 20px; }
 .social a, .legal a { color: var(--muted); text-decoration: none; }
-.social a:hover, .legal a:hover { color: #fff; }
+.social a:hover, .legal a:hover { color: var(--purple); }
 .legal { width: 100%; font-size: 0.85rem; margin: 8px 0 0; color: var(--faint); }
 @media (max-width: 920px) {
   .content-grid { grid-template-columns: 1fr; gap: 40px; }
