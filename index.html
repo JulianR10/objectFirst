@@ -231,9 +231,12 @@ fieldset.field { border: 0; padding: 0; }
 .footer-brand { display: flex; align-items: center; gap: 14px; }
 .footer-brand svg { height: 30px; width: auto; display: block; }
 .tagline { font-weight: 600; font-size: 0.95rem; letter-spacing: -0.01em; color: var(--ink); border-left: 1px solid var(--line); padding-left: 14px; }
-.social { display: flex; gap: 20px; }
-.social a, .legal a { color: var(--muted); text-decoration: none; }
-.social a:hover, .legal a:hover { color: var(--purple); }
+.social { display: flex; gap: 20px; align-items: center; }
+.social a { display: inline-flex; line-height: 0; color: #161515; }
+.social a:hover { color: var(--purple); }
+.social svg { width: 20px; height: 20px; }
+.legal a { color: var(--muted); text-decoration: none; }
+.legal a:hover { color: var(--purple); }
 .legal { width: 100%; font-size: 0.85rem; margin: 8px 0 0; color: var(--faint); }
 @media (max-width: 920px) {
   .content-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -447,10 +450,10 @@ fieldset.field { border: 0; padding: 0; }
         <span class="tagline">Simply Resilient</span>
       </div>
       <div class="social">
-        <a href="https://www.linkedin.com/company/objectfirst/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://x.com/object_first" target="_blank" rel="noopener">X</a>
-        <a href="https://www.youtube.com/channel/UCIi-WYFWGZlseKlrrCTtYuA" target="_blank" rel="noopener">YouTube</a>
-        <a href="https://www.instagram.com/objectfirst_" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.linkedin.com/company/objectfirst/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="https://x.com/object_first" target="_blank" rel="noopener" aria-label="X"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a>
+        <a href="https://www.youtube.com/channel/UCIi-WYFWGZlseKlrrCTtYuA" target="_blank" rel="noopener" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></a>
+        <a href="https://www.instagram.com/objectfirst_" target="_blank" rel="noopener" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
       </div>
       <p class="legal">&copy; 2026 Object First &middot; Tutti i diritti riservati. &middot; <a href="https://objectfirst.com/legal/privacy-policy/" target="_blank" rel="noopener">Informativa sulla privacy</a></p>
     </div>
