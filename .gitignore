@@ -1,0 +1,13 @@
+# Secrets / deploy internals
+.vercel/
+.env
+.env.local
+.env*.local
+
+# Vercel CLI output copy (se despliega desde la raíz)
+dist/
+
+# Docs internas (pesados, no van al repo público)
+*.pdf
+*.pptx
+*.ppt
