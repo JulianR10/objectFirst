@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- BUILD v3 2026-10-05: copy plan 2Leap (fecha 11nov, sin live, form nuevo) -->
+<!-- BUILD v3-light 2026-10-06: variante chiara, fondo blanco marca -->
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perché la resilienza dei dati è fondamentale per la sopravvivenza aziendale | Webinar Object First</title>
   <meta name="description" content="Webinar: perché la resilienza dei dati è fondamentale per la sopravvivenza aziendale. Dati Omdia 2026, Zero Trust e Immutabilità assoluta.">
-  <meta name="theme-color" content="#161515">
+  <meta name="theme-color" content="#ffffff">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Perché la resilienza dei dati è fondamentale per la sopravvivenza aziendale">
@@ -17,13 +17,27 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Object First — Webinar: Perché la resilienza dei dati è fondamentale per la sopravvivenza aziendale">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Fuente no bloqueante: si Google Fonts no responde, entra la pila del sistema -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap"></noscript>
+  <!-- Graphik Trial local (misma familia que objectfirst.com): preload + @font-face en <style> -->
+  <link rel="preload" href="fonts/Graphik-Regular-Trial.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="fonts/Graphik-Semibold-Trial.otf" as="font" type="font/otf" crossorigin>
   <style>
+/* Graphik Trial (400/500/600): misma familia y pesos que objectfirst.com.
+   Si la licencia Trial no cubre producción, el fallback es Inter/sistema. */
+@font-face {
+  font-family: "Graphik";
+  src: url("fonts/Graphik-Regular-Trial.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Graphik";
+  src: url("fonts/Graphik-Medium-Trial.otf") format("opentype");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Graphik";
+  src: url("fonts/Graphik-Semibold-Trial.otf") format("opentype");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
 /* Tokens oficiales: Brand Guidelines v1.0 (2025).
    Absolute Black #161515 · White #FFFFFF · Resilient Purple #5B00B3 ·
    Cadmium Orange #FF6131 · Veeam Green #00AD4E · Breach Red #E03400. */
@@ -31,17 +45,17 @@
   --black: #161515;
   --purple: #5b00b3;
   --orange: #ff6131;
-  --orange-soft: rgba(255, 97, 49, 0.14);
-  --ink: #ffffff;
-  --muted: #c9c9c9;
-  --faint: #8f8f8f;
-  --line: rgba(255, 255, 255, 0.14);
-  --card: rgba(255, 255, 255, 0.05);
+  --orange-soft: rgba(255, 97, 49, 0.12);
+  --ink: #161515;
+  --muted: #4c4756;
+  --faint: #6f6a7a;
+  --line: rgba(22, 21, 21, 0.14);
+  --card: #ffffff;
   --green: #00ad4e;
   --red: #e03400;
   --radius: 16px;
   --wrap: 1140px;
-  --font: "Inter Tight", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --font: "Graphik", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   --ease: cubic-bezier(0.22, 0.9, 0.28, 1);
 }
 * { box-sizing: border-box; }
@@ -51,20 +65,17 @@ body {
   font-family: var(--font);
   font-feature-settings: "salt" on;
   color: var(--ink);
-  background: var(--black);
-  line-height: 1.6;
+  background: #ffffff;
+  line-height: 1.4;
   -webkit-font-smoothing: antialiased;
 }
-/* Resilient Gradient (guía p24): púrpura → negro. Sin filtros GPU. */
+/* Variante chiara: fondo blanco de marca, sin gradiente oscuro. */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
-  background:
-    radial-gradient(1000px 560px at 10% -6%, rgba(91, 0, 179, 0.5), transparent 62%),
-    radial-gradient(760px 480px at 90% 6%, rgba(255, 97, 49, 0.13), transparent 60%),
-    linear-gradient(var(--black), #190f24 55%, var(--black));
+  background: #ffffff;
   pointer-events: none;
 }
 .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
@@ -89,39 +100,18 @@ body::before {
   cursor: pointer; text-align: center; overflow: hidden;
   transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), filter 0.25s var(--ease);
 }
-.btn::after { content: "→"; margin-left: 12px; font-size: 1.2rem; }
 .btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
 .btn:active { transform: translateY(0); }
-.btn-glow { box-shadow: 0 8px 32px rgba(255, 97, 49, 0.35); }
-.btn-glow:hover { box-shadow: 0 12px 44px rgba(255, 97, 49, 0.5); }
-.btn::after {
-  content: ""; position: absolute; top: 0; left: -80%;
-  width: 50%; height: 100%;
-  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-  transform: skewX(-20deg); transition: left 0.6s var(--ease);
-}
-.btn:hover::after { left: 130%; }
+/* Freccia stile sito ufficiale dopo il testo del bottone. */
+.btn::after { content: "→"; margin-left: 12px; font-size: 1.1em; line-height: 1; }
+/* Botones planos de marca: sin brillos ni barridos. */
 .btn:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
   outline: 3px solid var(--orange); outline-offset: 3px;
 }
-.btn-small { padding: 10px 22px; font-size: 0.88rem; border-radius: 10px; }
+.btn-small { padding: 10px 22px; font-size: 0.8125rem; border-radius: 10px; }
 .btn-full { width: 100%; }
 .btn[disabled] { opacity: 0.7; cursor: wait; transform: none; }
-.hero { position: relative; padding: 96px 0 84px; overflow: hidden; z-index: 1; }
-.hero::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 50%;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1.5px, transparent 1.5px);
-  background-size: 32px 32px;
-  mask-image: linear-gradient(to left, rgba(0,0,0,0.8), rgba(0,0,0,0));
-  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.8), rgba(0,0,0,0));
-  pointer-events: none;
-  z-index: -1;
-}
+.hero { position: relative; padding: 96px 0 84px; z-index: 1; }
 .hero .wrap { position: relative; z-index: 2; }
 .badge {
   display: inline-block; text-transform: uppercase; letter-spacing: 0.16em;
@@ -130,14 +120,15 @@ body::before {
   border-radius: 999px; padding: 8px 18px; margin-bottom: 24px;
 }
 .hero h1 {
-  font-size: clamp(1.9rem, 4.2vw, 3.1rem); font-weight: 600;
-  line-height: 1.1; letter-spacing: -0.04em; margin: 0 0 24px; color: #fff;
+  font-size: clamp(2.5rem, 6vw, 4.75rem); font-weight: 600;
+  line-height: 1.05; letter-spacing: -0.025em; margin: 0 0 24px; color: var(--ink);
 }
 .hero-meta { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 30px; }
 .meta-pill {
   display: inline-block; font-size: 0.95rem; font-weight: 500; color: var(--ink);
   background: var(--card); border: 1px solid var(--line);
   border-radius: 999px; padding: 8px 18px;
+  box-shadow: 0 4px 14px rgba(22, 21, 21, 0.05);
 }
 /* Fecha: por defecto se muestra la variante TBC (sin día). Solo con fecha
    confirmada (body.date-ok, puesto por JS) se muestra el día. */
@@ -150,31 +141,33 @@ body.date-ok .date-tbc { display: none; }
   min-width: 84px; text-align: center;
   background: var(--card); border: 1px solid var(--line);
   border-radius: 14px; padding: 12px 8px 10px;
+  box-shadow: 0 4px 14px rgba(22, 21, 21, 0.05);
 }
 .cd-num { display: block; font-size: 1.9rem; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.1; }
 .cd-lab { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
 .cd-note {
   margin: 0;
   font-weight: 600;
-  color: #ffb59d;
+  color: #b93e00;
 }
-.stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(91, 0, 179, 0.08); }
+.stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(91, 0, 179, 0.04); }
 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; padding-top: 44px; padding-bottom: 20px; }
 .stats-source { margin: 0 auto; padding-bottom: 36px; font-size: 0.85rem; color: var(--faint); text-align: right; }
-.stat-num { margin: 0; font-size: clamp(2.4rem, 4vw, 3.4rem); font-weight: 600; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; color: #fff; }
+.stat-num { margin: 0; font-size: clamp(2.4rem, 4vw, 3.4rem); font-weight: 600; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; color: var(--ink); }
 .stat-lab { margin: 8px 0 0; color: var(--muted); font-size: 0.98rem; }
 .content-grid { display: grid; grid-template-columns: 1fr 400px; gap: 56px; padding-top: 64px; padding-bottom: 88px; align-items: start; }
-.question { font-size: clamp(1.3rem, 2.2vw, 1.6rem); font-weight: 600; letter-spacing: -0.02em; color: #fff; margin-top: 0; }
-.body-copy p { color: #e9e4f5; }
-.hook { font-size: 1.12rem; font-weight: 500; color: #fff; }
-.closing { font-weight: 600; color: #fff; border-left: 3px solid var(--orange); padding-left: 16px; }
+.question { font-size: clamp(1.3rem, 2.2vw, 1.6rem); font-weight: 600; letter-spacing: -0.02em; color: var(--ink); margin-top: 0; }
+.body-copy p { color: #3d3847; }
+.hook { font-size: 1.12rem; font-weight: 500; color: var(--ink); }
+.closing { font-weight: 600; color: var(--ink); border-left: 3px solid var(--orange); padding-left: 16px; }
 .takeaways { display: grid; gap: 16px; margin: 32px 0; }
 .card {
   position: relative; background: var(--card); border: 1px solid var(--line);
   border-radius: var(--radius); padding: 22px 24px 22px 88px; overflow: hidden;
+  box-shadow: 0 10px 28px rgba(22, 21, 21, 0.06);
   transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), background 0.3s var(--ease);
 }
-.card:hover { transform: translateY(-3px); border-color: rgba(255, 97, 49, 0.5); background: rgba(255, 97, 49, 0.07); }
+.card:hover { transform: translateY(-3px); border-color: rgba(255, 97, 49, 0.5); background: #fff7f3; }
 .card h3 { margin: 0; font-size: 1.08rem; font-weight: 500; line-height: 1.45; }
 .card-num {
   position: absolute; left: 24px; top: 50%; transform: translateY(-50%);
@@ -185,74 +178,73 @@ body.date-ok .date-tbc { display: none; }
   display: flex; gap: 18px; align-items: center;
   background: var(--card); border: 1px solid var(--line);
   border-radius: var(--radius); padding: 24px; margin: 36px 0;
+  box-shadow: 0 10px 28px rgba(22, 21, 21, 0.06);
 }
 .speaker-avatar {
   flex: 0 0 72px; width: 72px; height: 72px; border-radius: 50%; overflow: hidden;
-  border: 2px solid rgba(91, 0, 179, 0.9); box-shadow: 0 0 24px rgba(91, 0, 179, 0.45);
+  border: 2px solid var(--line);
 }
 .speaker-avatar svg { display: block; width: 100%; height: 100%; }
-.speaker-name { font-weight: 600; font-size: 1.1rem; margin: 0; color: #fff; }
+.speaker-name { font-weight: 600; font-size: 1.1rem; margin: 0; color: var(--ink); }
 .speaker-role { margin: 2px 0 0; color: var(--muted); }
 .form-card {
   position: sticky; top: 92px;
-  background: rgba(29, 20, 38, 0.94);
+  background: #ffffff;
   border: 1px solid var(--line); border-radius: 20px;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 24px 64px rgba(22, 21, 21, 0.12);
   padding: 34px 30px; overflow: hidden;
 }
-.form-glow {
-  position: absolute; top: -70px; left: 10%; right: 10%; height: 140px;
-  background: radial-gradient(ellipse, rgba(91, 0, 179, 0.5), transparent 70%);
-  pointer-events: none;
-}
-.form-card h2 { position: relative; margin: 0 0 22px; color: #fff; font-weight: 600; letter-spacing: -0.02em; }
+.form-card h2 { position: relative; margin: 0 0 22px; color: var(--ink); font-size: 1.5625rem; line-height: 1.3; letter-spacing: -0.02em; font-weight: 600; }
 .form-card form { position: relative; }
 .field { margin-bottom: 15px; }
-.field label, .field legend { display: block; font-weight: 500; font-size: 0.9rem; margin-bottom: 6px; color: #f0eafb; }
+.field label, .field legend { display: block; font-weight: 500; font-size: 0.9rem; margin-bottom: 6px; color: #2b2833; }
 fieldset.field { border: 0; padding: 0; }
 .field input[type="text"], .field input[type="email"], .field select {
-  width: 100%; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 10px;
+  width: 100%; border: 1px solid rgba(22, 21, 21, 0.2); border-radius: 10px;
   padding: 12px 13px; font-size: 1rem; font-family: inherit;
-  background: rgba(255, 255, 255, 0.07); color: var(--ink);
+  background: #ffffff; color: var(--ink);
   transition: border-color 0.2s var(--ease), background 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
 .field select option { color: #111; }
 .field input:focus, .field select:focus {
-  border-color: var(--orange); background: rgba(255, 255, 255, 0.1);
+  border-color: var(--orange); background: #ffffff;
   box-shadow: 0 0 0 3px rgba(255, 97, 49, 0.25); outline: none;
 }
 .radio, .checkbox { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; margin-bottom: 8px; cursor: pointer; }
 .radio input, .checkbox input { margin-top: 4px; accent-color: var(--orange); width: 17px; height: 17px; flex-shrink: 0; }
 .consent { font-size: 0.86rem; color: var(--muted); }
-/* Errores: bordes Breach Red #E03400. Texto #ff8a70 (ratio WCAG 7.73:1 medido;
-   #E03400 sobre este fondo da 3.95 y falla 4.5 para texto pequeño). */
-.field-error { display: none; color: #ff8a70; font-size: 0.85rem; margin: 6px 0 0; }
+/* Errores (variante chiara): texto #c02a00 sobre fondo claro. */
+.field-error { display: none; color: #c02a00; font-size: 0.85rem; margin: 6px 0 0; }
 .field.invalid .field-error { display: block; }
 .field.invalid input, .field.invalid select { border-color: var(--red); }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .under-btn, .form-foot { font-size: 0.82rem; color: var(--muted); }
-.under-btn a { color: #fff; }
-.noscript-note { font-size: 0.9rem; color: #ffb59d; background: var(--orange-soft); border: 1px solid rgba(255, 97, 49, 0.45); border-radius: 10px; padding: 10px 14px; }
+.under-btn a { color: var(--purple); }
+.noscript-note { font-size: 0.9rem; color: #a33300; background: var(--orange-soft); border: 1px solid rgba(255, 97, 49, 0.45); border-radius: 10px; padding: 10px 14px; }
 .form-panel { position: relative; text-align: center; }
-.form-panel h3 { color: #fff; margin: 14px 0 10px; font-weight: 600; }
+.form-panel h3 { color: var(--ink); margin: 14px 0 10px; font-weight: 600; }
 .form-panel p { color: var(--muted); }
 .check svg { width: 72px; height: 72px; fill: none; stroke: var(--green); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
 .check circle { stroke-dasharray: 157; stroke-dashoffset: 157; animation: draw 0.7s var(--ease) forwards; }
 .check path { stroke-dasharray: 40; stroke-dashoffset: 40; animation: draw 0.45s var(--ease) 0.55s forwards; }
 @keyframes draw { to { stroke-dashoffset: 0; } }
-.site-footer { border-top: 1px solid var(--line); background: rgba(0, 0, 0, 0.35); padding: 44px 0; }
+.site-footer { border-top: 1px solid var(--line); background: #ffffff; padding: 44px 0; }
 .footer-inner { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
 .footer-brand { display: flex; align-items: center; gap: 14px; }
 .footer-brand svg { height: 30px; width: auto; display: block; }
-.tagline { font-weight: 600; font-size: 0.95rem; letter-spacing: -0.01em; color: #fff; border-left: 1px solid var(--line); padding-left: 14px; }
-.social { display: flex; gap: 20px; }
-.social a, .legal a { color: var(--muted); text-decoration: none; }
-.social a:hover, .legal a:hover { color: #fff; }
+.tagline { font-weight: 600; font-size: 0.95rem; letter-spacing: -0.01em; color: var(--ink); border-left: 1px solid var(--line); padding-left: 14px; }
+.social { display: flex; gap: 20px; align-items: center; }
+.social a { display: inline-flex; line-height: 0; color: #161515; }
+.social a:hover { color: var(--purple); }
+.social svg { width: 20px; height: 20px; }
+.legal a { color: var(--muted); text-decoration: none; }
+.legal a:hover { color: var(--purple); }
 .legal { width: 100%; font-size: 0.85rem; margin: 8px 0 0; color: var(--faint); }
 @media (max-width: 920px) {
   .content-grid { grid-template-columns: 1fr; gap: 40px; }
   .form-card { position: static; }
   .hero { padding: 68px 0 60px; }
+  .hero h1 { font-size: 2.5rem; }
   .stats-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
   .header-nav { display: none; }
   .cd-cell { min-width: 70px; }
@@ -260,7 +252,6 @@ fieldset.field { border: 0; padding: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .btn::after { display: none; }
   .btn, .card { transition: none; }
   .check circle, .check path { animation: none; stroke-dashoffset: 0; }
 }
@@ -297,7 +288,7 @@ fieldset.field { border: 0; padding: 0; }
           <div class="cd-cell"><span class="cd-num" id="cd-s">--</span><span class="cd-lab">sec</span></div>
         </div>
         <div class="hero-cta">
-          <a class="btn btn-glow" href="#main-form-container">Registrati ora</a>
+          <a class="btn" href="#main-form-container">Registrati ora</a>
         </div>
       </div>
     </section>
@@ -366,11 +357,10 @@ fieldset.field { border: 0; padding: 0; }
           </div>
         </div>
 
-        <a class="btn btn-glow" href="#main-form-container">Registrati ora</a>
+        <a class="btn" href="#main-form-container">Registrati ora</a>
       </section>
 
       <aside class="form-card" id="main-form-container" aria-labelledby="form-title">
-        <div class="form-glow" aria-hidden="true"></div>
         <h2 id="form-title">Registrati ora</h2>
 
         <noscript><p class="noscript-note">Per registrarti attiva JavaScript nel browser.</p></noscript>
@@ -462,10 +452,10 @@ fieldset.field { border: 0; padding: 0; }
         <span class="tagline">Simply Resilient</span>
       </div>
       <div class="social">
-        <a href="https://www.linkedin.com/company/objectfirst/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://x.com/object_first" target="_blank" rel="noopener">X</a>
-        <a href="https://www.youtube.com/channel/UCIi-WYFWGZlseKlrrCTtYuA" target="_blank" rel="noopener">YouTube</a>
-        <a href="https://www.instagram.com/objectfirst_" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/channel/UCIi-WYFWGZlseKlrrCTtYuA" target="_blank" rel="noopener" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <a href="https://www.instagram.com/objectfirst_" target="_blank" rel="noopener" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a>
+        <a href="https://www.linkedin.com/company/objectfirst/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://x.com/object_first" target="_blank" rel="noopener" aria-label="X"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/></svg></a>
       </div>
       <p class="legal">&copy; 2026 Object First &middot; Tutti i diritti riservati. &middot; <a href="https://objectfirst.com/legal/privacy-policy/" target="_blank" rel="noopener">Informativa sulla privacy</a></p>
     </div>
