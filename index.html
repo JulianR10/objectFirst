@@ -102,6 +102,8 @@ body::before {
 }
 .btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
 .btn:active { transform: translateY(0); }
+/* Freccia stile sito ufficiale dopo il testo del bottone. */
+.btn::after { content: "→"; margin-left: 12px; font-size: 1.1em; line-height: 1; }
 /* Botones planos de marca: sin brillos ni barridos. */
 .btn:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
   outline: 3px solid var(--orange); outline-offset: 3px;
