@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- BUILD v3-light 2026-10-06: variante chiara (fondos claros) su light-theme -->
+<!-- BUILD v3-light 2026-10-06: variante chiara, fondo blanco marca -->
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perché la resilienza dei dati è fondamentale per la sopravvivenza aziendale | Webinar Object First</title>
   <meta name="description" content="Webinar: perché la resilienza dei dati è fondamentale per la sopravvivenza aziendale. Dati Omdia 2026, Zero Trust e Immutabilità assoluta.">
-  <meta name="theme-color" content="#fbf9ff">
+  <meta name="theme-color" content="#ffffff">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Perché la resilienza dei dati è fondamentale per la sopravvivenza aziendale">
@@ -51,20 +51,17 @@ body {
   font-family: var(--font);
   font-feature-settings: "salt" on;
   color: var(--ink);
-  background: #fbf9ff;
+  background: #ffffff;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
-/* Resilient Gradient (guía p24): púrpura → negro. Sin filtros GPU. */
+/* Variante chiara: fondo blanco de marca, sin gradiente oscuro. */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
-  background:
-    radial-gradient(1000px 560px at 10% -6%, rgba(91, 0, 179, 0.12), transparent 62%),
-    radial-gradient(760px 480px at 90% 6%, rgba(255, 97, 49, 0.10), transparent 60%),
-    linear-gradient(#ffffff, #f3ecff 55%, #fbf9ff);
+  background: #ffffff;
   pointer-events: none;
 }
 .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
@@ -160,7 +157,7 @@ body.date-ok .date-tbc { display: none; }
   font-weight: 600;
   color: #b93e00;
 }
-.stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(91, 0, 179, 0.06); }
+.stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #ffffff; }
 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; padding-top: 44px; padding-bottom: 20px; }
 .stats-source { margin: 0 auto; padding-bottom: 36px; font-size: 0.85rem; color: var(--faint); text-align: right; }
 .stat-num { margin: 0; font-size: clamp(2.4rem, 4vw, 3.4rem); font-weight: 600; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; color: var(--ink); }
@@ -217,7 +214,7 @@ fieldset.field { border: 0; padding: 0; }
 .field input[type="text"], .field input[type="email"], .field select {
   width: 100%; border: 1px solid rgba(22, 21, 21, 0.2); border-radius: 10px;
   padding: 12px 13px; font-size: 1rem; font-family: inherit;
-  background: #f6f2ff; color: var(--ink);
+  background: #ffffff; color: var(--ink);
   transition: border-color 0.2s var(--ease), background 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
 .field select option { color: #111; }
