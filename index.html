@@ -86,39 +86,16 @@ body::before {
   cursor: pointer; text-align: center; overflow: hidden;
   transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), filter 0.25s var(--ease);
 }
-.btn::after { content: "→"; margin-left: 12px; font-size: 1.2rem; }
 .btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
 .btn:active { transform: translateY(0); }
-.btn-glow { box-shadow: 0 8px 32px rgba(255, 97, 49, 0.35); }
-.btn-glow:hover { box-shadow: 0 12px 44px rgba(255, 97, 49, 0.5); }
-.btn::after {
-  content: ""; position: absolute; top: 0; left: -80%;
-  width: 50%; height: 100%;
-  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-  transform: skewX(-20deg); transition: left 0.6s var(--ease);
-}
-.btn:hover::after { left: 130%; }
+/* Botones planos de marca: sin brillos ni barridos. */
 .btn:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
   outline: 3px solid var(--orange); outline-offset: 3px;
 }
 .btn-small { padding: 10px 22px; font-size: 0.88rem; border-radius: 10px; }
 .btn-full { width: 100%; }
 .btn[disabled] { opacity: 0.7; cursor: wait; transform: none; }
-.hero { position: relative; padding: 96px 0 84px; overflow: hidden; z-index: 1; }
-.hero::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 50%;
-  background-image: radial-gradient(rgba(91, 0, 179, 0.14) 1.5px, transparent 1.5px);
-  background-size: 32px 32px;
-  mask-image: linear-gradient(to left, rgba(0,0,0,0.8), rgba(0,0,0,0));
-  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.8), rgba(0,0,0,0));
-  pointer-events: none;
-  z-index: -1;
-}
+.hero { position: relative; padding: 96px 0 84px; z-index: 1; }
 .hero .wrap { position: relative; z-index: 2; }
 .badge {
   display: inline-block; text-transform: uppercase; letter-spacing: 0.16em;
@@ -189,7 +166,7 @@ body.date-ok .date-tbc { display: none; }
 }
 .speaker-avatar {
   flex: 0 0 72px; width: 72px; height: 72px; border-radius: 50%; overflow: hidden;
-  border: 2px solid rgba(91, 0, 179, 0.9); box-shadow: 0 0 24px rgba(91, 0, 179, 0.45);
+  border: 2px solid var(--line);
 }
 .speaker-avatar svg { display: block; width: 100%; height: 100%; }
 .speaker-name { font-weight: 600; font-size: 1.1rem; margin: 0; color: var(--ink); }
@@ -200,11 +177,6 @@ body.date-ok .date-tbc { display: none; }
   border: 1px solid var(--line); border-radius: 20px;
   box-shadow: 0 24px 64px rgba(22, 21, 21, 0.12);
   padding: 34px 30px; overflow: hidden;
-}
-.form-glow {
-  position: absolute; top: -70px; left: 10%; right: 10%; height: 140px;
-  background: radial-gradient(ellipse, rgba(91, 0, 179, 0.18), transparent 70%);
-  pointer-events: none;
 }
 .form-card h2 { position: relative; margin: 0 0 22px; color: var(--ink); font-weight: 600; letter-spacing: -0.02em; }
 .form-card form { position: relative; }
@@ -260,7 +232,6 @@ fieldset.field { border: 0; padding: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .btn::after { display: none; }
   .btn, .card { transition: none; }
   .check circle, .check path { animation: none; stroke-dashoffset: 0; }
 }
@@ -297,7 +268,7 @@ fieldset.field { border: 0; padding: 0; }
           <div class="cd-cell"><span class="cd-num" id="cd-s">--</span><span class="cd-lab">sec</span></div>
         </div>
         <div class="hero-cta">
-          <a class="btn btn-glow" href="#main-form-container">Registrati ora</a>
+          <a class="btn" href="#main-form-container">Registrati ora</a>
         </div>
       </div>
     </section>
@@ -366,11 +337,10 @@ fieldset.field { border: 0; padding: 0; }
           </div>
         </div>
 
-        <a class="btn btn-glow" href="#main-form-container">Registrati ora</a>
+        <a class="btn" href="#main-form-container">Registrati ora</a>
       </section>
 
       <aside class="form-card" id="main-form-container" aria-labelledby="form-title">
-        <div class="form-glow" aria-hidden="true"></div>
         <h2 id="form-title">Registrati ora</h2>
 
         <noscript><p class="noscript-note">Per registrarti attiva JavaScript nel browser.</p></noscript>
