@@ -11,3 +11,6 @@ dist/
 *.pdf
 *.pptx
 *.ppt
+
+.vercel
+.env*

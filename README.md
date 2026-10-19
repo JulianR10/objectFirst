@@ -6,7 +6,7 @@ Landing estática (un solo `index.html`) del webinar
 - `index.html` → página completa (HTML + CSS + JS inline, sin build)
 - `logo.png`, `logo.svg`, `favicon.svg`, `og-cover.png` → assets
 - `og-cover.png` → tarjeta 1200×630 para previews sociales (regenerada 20 Oct 2026)
-- Form → Supabase (`webinar_registrations_italia`); integración Zoom pendiente
+- `api/register.js` → Vercel Function: el form registra en Zoom Webinars y guarda en Supabase (`webinar_registrations_italia`). Setup: `INTEGRACION_ZOOM.md`
 - Ramas:
   - `main` → versión oscura (actual)
   - `light-theme` → versión clara (fondos claros)

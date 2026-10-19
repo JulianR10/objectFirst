@@ -490,7 +490,7 @@ body.modal-open { overflow: hidden; }
               <svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="25"/><path d="M14 27l8 8 16-16"/></svg>
             </div>
             <h3 id="success-title">Grazie per esserti registrato!</h3>
-            <!-- El email con el link personale lo envía Zoom (integración/API pendiente, p7 del plan) -->
+            <!-- El email con el link personale lo envía Zoom (vía /api/register, p7 del plan) -->
             <p>Ti abbiamo inviato un'email con il link personale per partecipare al webinar. Se non la trovi, controlla la cartella spam.</p>
             <button class="btn btn-full" type="button" data-close>Chiudi</button>
           </div>
@@ -531,9 +531,7 @@ body.modal-open { overflow: hidden; }
    validación, envío). Nada depende de él para verse. */
 
 const CONFIG = {
-  SUPABASE_URL: "https://wgydhadvbighajaumlxe.supabase.co",
-  SUPABASE_ANON_KEY: "sb_publishable_OUX8LRglD-kvd6LEQ7pykA_Wisyh2E5",
-  TABLE: "webinar_registrations_italia",
+  REGISTER_URL: "/api/register",
   // Data confermata dal Copy Plan aggiornato 14 Oct 2026 (giovedì 19 novembre 2026, 11:00 CET).
   WEBINAR_DAY: "19",
   WEBINAR_ISO: "2026-11-19T11:00:00+01:00",
@@ -609,6 +607,8 @@ function getUtms() {
     utm_content: q.get("utm_content"),
     utm_term: q.get("utm_term"),
     landing_url: window.location.href.split("?")[0],
+    // Sin UTMs: de qué sitio llegó (linkedin.com, instagram.com…); vacío = link directo/compartido.
+    referrer: document.referrer || null,
   };
 }
 
@@ -667,23 +667,16 @@ function validate(form) {
   return ok;
 }
 
+// /api/register (Vercel Function) registra en Zoom y guarda en Supabase.
 async function submitRegistration(payload) {
-  const res = await fetch(
-    `${CONFIG.SUPABASE_URL}/rest/v1/${CONFIG.TABLE}`,
-    {
-      method: "POST",
-      headers: {
-        apikey: CONFIG.SUPABASE_ANON_KEY,
-        Authorization: `Bearer ${CONFIG.SUPABASE_ANON_KEY}`,
-        "Content-Type": "application/json",
-        Prefer: "return=minimal",
-      },
-      body: JSON.stringify(payload),
-    }
-  );
+  const res = await fetch(CONFIG.REGISTER_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
   if (!res.ok) {
     const text = await res.text().catch(() => "");
-    throw new Error(`Supabase insert failed: ${res.status} ${text}`);
+    throw new Error(`Registration failed: ${res.status} ${text}`);
   }
 }
 
@@ -724,8 +717,7 @@ function initForm() {
     closeModal(failureOverlay);
   });
   const showSuccess = (viaHoneypot) => {
-    // TODO(Zoom): aquí irá POST /api/register → Zoom Add Registrant.
-    // Zoom enviará el link personale por email (confirmación + reminders).
+    // Zoom envía el link personale por email (confirmación + reminders).
     openModal(successOverlay);
   };
   form.addEventListener("submit", async (e) => {

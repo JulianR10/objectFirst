@@ -1,0 +1,8 @@
+# Material interno: no se sube a Vercel en cada deploy
+*.pdf
+*.pptx
+*.ppt
+*.md
+supabase/
+.env
+.env*.local
