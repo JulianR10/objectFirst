@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<!-- BUILD v3-light 2026-10-06: variante chiara, fondo blanco marca -->
+<!-- BUILD v4-copy-2026-10-14: copy aggiornato da Copy Plan 14 Oct 2026, data 19 Nov -->
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perché la resilienza dei dati è fondamentale per la sopravvivenza aziendale | Webinar Object First</title>
-  <meta name="description" content="Webinar: perché la resilienza dei dati è fondamentale per la sopravvivenza aziendale. Dati Omdia 2026, Zero Trust e Immutabilità assoluta.">
+  <title>Sopravvivere agli attacchi informatici basati sull’IA: costruire la resilienza per garantire il ripristino e il benessere dei team IT | Webinar Object First</title>
+  <meta name="description" content="Webinar Object First e Veeam: come mantenere i backup ripristinabili anche con le credenziali di amministratore compromesse. Online · 19 novembre 2026 · 11:00 CET.">
   <meta name="theme-color" content="#ffffff">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Perché la resilienza dei dati è fondamentale per la sopravvivenza aziendale">
-  <meta property="og:description" content="L'83% delle organizzazioni ha subito un attacco ransomware. Scopri i dati Omdia 2026 e come preparare i tuoi backup al peggior scenario possibile.">
+  <meta property="og:title" content="Sopravvivere agli attacchi informatici basati sull’IA: costruire la resilienza per garantire il ripristino e il benessere dei team IT">
+  <meta property="og:description" content="L’IA ha dato agli aggressori strumenti più rapidi e sofisticati. Scopri come mantenere i backup ripristinabili e perché la resilienza riguarda le persone tanto quanto la tecnologia.">
   <meta property="og:url" content="https://object-first.vercel.app/">
   <meta property="og:image" content="https://object-first.vercel.app/og-cover.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Object First — Webinar: Perché la resilienza dei dati è fondamentale per la sopravvivenza aziendale">
+  <meta property="og:image:alt" content="Object First — Webinar: Sopravvivere agli attacchi informatici basati sull’IA">
   <meta name="twitter:card" content="summary_large_image">
   <!-- Graphik Trial local (misma familia que objectfirst.com): preload + @font-face en <style> -->
   <link rel="preload" href="fonts/Graphik-Regular-Trial.otf" as="font" type="font/otf" crossorigin>
@@ -121,7 +121,11 @@ body::before {
 }
 .hero h1 {
   font-size: clamp(2.5rem, 6vw, 4.75rem); font-weight: 600;
-  line-height: 1.05; letter-spacing: -0.025em; margin: 0 0 24px; color: var(--ink);
+  line-height: 1.05; letter-spacing: -0.025em; margin: 0 0 16px; color: var(--ink);
+}
+.hero-sub {
+  font-size: clamp(1.25rem, 2.6vw, 1.75rem); font-weight: 500;
+  line-height: 1.3; letter-spacing: -0.015em; margin: 0 0 24px; color: #2b2833;
 }
 .hero-meta { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 30px; }
 .meta-pill {
@@ -224,6 +228,39 @@ fieldset.field { border: 0; padding: 0; }
 .form-panel { position: relative; text-align: center; }
 .form-panel h3 { color: var(--ink); margin: 14px 0 10px; font-weight: 600; }
 .form-panel p { color: var(--muted); }
+/* Pop-up modali (PDF p.7): overlay + dialog centrato, copy invariato. */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px; background: rgba(22, 21, 21, 0.55);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s var(--ease);
+}
+.modal-overlay.open { opacity: 1; pointer-events: auto; }
+.modal-overlay[hidden] { display: none; }
+.modal {
+  position: relative; width: min(480px, 100%);
+  background: #fff; border-radius: 20px;
+  box-shadow: 0 32px 80px rgba(22, 21, 21, 0.3);
+  padding: 36px 32px 30px; text-align: center;
+  transform: translateY(12px) scale(0.98);
+  transition: transform 0.25s var(--ease);
+}
+.modal-overlay.open .modal { transform: none; }
+.modal-close {
+  position: absolute; top: 12px; right: 12px;
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid var(--line); background: #fff;
+  font-size: 1.2rem; line-height: 1; cursor: pointer; color: var(--muted);
+}
+.modal-close:hover { border-color: var(--orange); color: var(--ink); }
+.modal .btn { margin-top: 18px; }
+.modal .btn-ghost {
+  background: transparent; color: var(--muted);
+  border: 1px solid var(--line); margin-top: 10px;
+}
+.modal .btn-ghost::after { content: none; }
+body.modal-open { overflow: hidden; }
 .check svg { width: 72px; height: 72px; fill: none; stroke: var(--green); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
 .check circle { stroke-dasharray: 157; stroke-dashoffset: 157; animation: draw 0.7s var(--ease) forwards; }
 .check path { stroke-dasharray: 40; stroke-dashoffset: 40; animation: draw 0.45s var(--ease) 0.55s forwards; }
@@ -246,6 +283,8 @@ fieldset.field { border: 0; padding: 0; }
   .hero { padding: 68px 0 60px; }
   .hero h1 { font-size: 2.5rem; }
   .stats-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .stat { text-align: center; }
+  .stats-source { text-align: center; }
   .header-nav { display: none; }
   .cd-cell { min-width: 70px; }
   .brand svg { height: 34px; }
@@ -275,11 +314,11 @@ fieldset.field { border: 0; padding: 0; }
     <section class="hero">
       <div class="wrap">
         <span class="badge">Webinar</span>
-        <h1>Perché la resilienza dei dati è fondamentale per la sopravvivenza aziendale</h1>
+        <h1>Sopravvivere agli attacchi informatici basati sull’IA</h1>
+        <p class="hero-sub">Costruire la resilienza per garantire il ripristino e il benessere dei team IT</p>
         <p class="hero-meta">
           <span class="meta-pill">Online</span>
-          <!-- PENDIENTE [DATA] (11 o 12): por defecto se muestra SIN día -->
-          <span class="meta-pill"><span class="date-confirmed"><span data-token="day">11</span> novembre 2026</span><span class="date-tbc">Novembre 2026</span> · 11:00 CET</span>
+          <span class="meta-pill"><span class="date-confirmed"><span data-token="day">19</span> novembre 2026</span><span class="date-tbc">Novembre 2026</span> · 11:00 CET</span>
         </p>
         <div class="countdown" id="countdown" hidden role="timer" aria-label="Countdown al webinar">
           <div class="cd-cell"><span class="cd-num" id="cd-g">--</span><span class="cd-lab">giorni</span></div>
@@ -296,8 +335,8 @@ fieldset.field { border: 0; padding: 0; }
     <section class="stats" id="dati" aria-label="Dati chiave">
       <div class="wrap stats-grid">
         <div class="stat">
-          <p class="stat-num">83%</p>
-          <p class="stat-lab">delle organizzazioni ha subito attacchi con impatto sui servizi negli ultimi 2 anni</p>
+          <p class="stat-num">59%</p>
+          <p class="stat-lab">dei professionisti IT ha pensato di cambiare lavoro per la pressione del proprio ruolo</p>
         </div>
         <div class="stat">
           <p class="stat-num">4 su 5</p>
@@ -312,48 +351,57 @@ fieldset.field { border: 0; padding: 0; }
           <p class="stat-lab">dei dati recuperati, in media, dopo un attacco</p>
         </div>
       </div>
-      <p class="wrap stats-source">Fonte: Omdia Research 2026</p>
+      <p class="wrap stats-source">Fonti: Omdia Research 2026; ricerca Object First 2025</p>
     </section>
 
     <div class="wrap content-grid">
       <section class="body-copy">
-        <p class="hook">Nuova ricerca Omdia 2026: l'83% delle organizzazioni ha subito attacchi con impatto sui servizi negli ultimi 2 anni. Di queste, il 75% ne ha subito più di uno.</p>
+        <p class="hook">L’intelligenza artificiale ha reso i team IT più produttivi che mai, ma ha dato anche agli aggressori strumenti più rapidi e sofisticati.</p>
 
-        <p class="question">Zero Trust ci insegna a presumere la violazione. Ma cosa succede quando la violazione avviene davvero? E come ci si protegge?</p>
+        <p class="question">Quando la prevenzione fallisce, cosa succede alle persone che devono rimettere insieme i pezzi? E cosa serve per un ripristino di cui fidarsi?</p>
 
-        <p>Partecipa al webinar con [RELATORE] per capire perché la resilienza dei dati è decisiva nell'attuale scenario di cybersicurezza, e cosa significa in pratica. Partendo dalle ricerche più recenti su protezione dei dati e ransomware, vedremo come prepararsi al peggior scenario possibile: un criminale informatico che ha accesso a tutte le tue password e a tutti i tuoi segreti.</p>
+        <p>Partecipa al webinar con Simona Riela (Object First) e Danilo Chiavari (Veeam) per capire perché la resilienza dei dati riguarda le persone tanto quanto la tecnologia. Partendo da nuove ricerche sul benessere dei professionisti IT e dalle più recenti tendenze su ransomware e ripristino, vedremo cosa serve per garantire un ripristino affidabile quando la prevenzione fallisce.</p>
 
         <p>Durante il webinar vedremo:</p>
 
         <div class="takeaways" id="perche">
           <article class="card">
             <span class="card-num" aria-hidden="true">01</span>
-            <h3>Perché in 4 attacchi su 5 i criminali prendono di mira i backup</h3>
+            <h3>Perché gli aggressori prendono di mira innanzitutto i backup, e cosa significa per i team responsabili del ripristino</h3>
           </article>
           <article class="card">
             <span class="card-num" aria-hidden="true">02</span>
-            <h3>Perché il ripristino richiede quasi sempre più tempo del previsto: il 79% ha impiegato più di 5 giorni lavorativi e in media è stato recuperato solo il 61% dei dati</h3>
+            <h3>Come mantenere i dati di backup ripristinabili anche quando un aggressore dispone di tutte le credenziali amministrative</h3>
           </article>
           <article class="card">
             <span class="card-num" aria-hidden="true">03</span>
-            <h3>Cosa chiedono normative come NIS2 e DORA e le assicurazioni informatiche: backup e ripristino comprovati, protezione contro manomissioni e cancellazioni</h3>
+            <h3>Perché la grande maggioranza dei professionisti IT ritiene che questo ridurrebbe il proprio stress</h3>
           </article>
           <article class="card">
             <span class="card-num" aria-hidden="true">04</span>
-            <h3>Come applicare i principi Zero Trust Data Resilience e perché l&rsquo;Immutabilità assoluta è l&rsquo;ultima linea di difesa</h3>
+            <h3>Come la pressione sui team porta a errori e all’abbandono del personale qualificato, mettendo a rischio il piano di ripristino</h3>
           </article>
         </div>
 
-        <p class="closing">Rispettare normative e requisiti assicurativi e garantire la sopravvivenza dell'azienda: non è più “solo” un tema IT, è una priorità per il consiglio di amministrazione.</p>
+        <p class="closing">Oggi la resilienza dei dati significa anche resilienza dei team.</p>
 
         <div class="speaker" id="speaker">
           <div class="speaker-avatar" aria-hidden="true">
             <svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="24" fill="#5B00B3"/><circle cx="24" cy="18" r="8" fill="#E8E8E8"/><path d="M10 42c2-8 8-12 14-12s12 4 14 12" fill="#E8E8E8"/></svg>
           </div>
           <div>
-            <!-- Speaker: nombre parcial confirmado (Simona). Apellido, rol y foto pendientes (p30 del plan) -->
-            <p class="speaker-name">Simona [Cognome]</p>
-            <p class="speaker-role">[Ruolo] — Object First</p>
+            <p class="speaker-name">Simona Riela</p>
+            <p class="speaker-role">Senior Channel and Territory Manager Italy — Object First</p>
+          </div>
+        </div>
+
+        <div class="speaker" id="speaker-2">
+          <div class="speaker-avatar" aria-hidden="true">
+            <svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="24" fill="#00AD4E"/><circle cx="24" cy="18" r="8" fill="#E8E8E8"/><path d="M10 42c2-8 8-12 14-12s12 4 14 12" fill="#E8E8E8"/></svg>
+          </div>
+          <div>
+            <p class="speaker-name">Danilo Chiavari</p>
+            <p class="speaker-role">Sr. Presales Manager, Italy &amp; Turkey — Veeam</p>
           </div>
         </div>
 
@@ -428,18 +476,26 @@ fieldset.field { border: 0; padding: 0; }
           <p class="form-foot">Le informazioni fornite saranno utilizzate in conformit&agrave; con l&rsquo;Informativa sulla privacy di Object First.</p>
         </form>
 
-        <div class="form-panel" id="form-success" hidden>
-          <div class="check" aria-hidden="true">
-            <svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="25"/><path d="M14 27l8 8 16-16"/></svg>
+        <div class="modal-overlay" id="success-overlay" hidden>
+          <div class="form-panel modal" id="form-success" role="dialog" aria-modal="true" aria-labelledby="success-title">
+            <button class="modal-close" type="button" data-close aria-label="Chiudi">×</button>
+            <div class="check" aria-hidden="true">
+              <svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="25"/><path d="M14 27l8 8 16-16"/></svg>
+            </div>
+            <h3 id="success-title">Grazie per esserti registrato!</h3>
+            <!-- El email con el link personale lo envía Zoom (integración/API pendiente, p7 del plan) -->
+            <p>Ti abbiamo inviato un'email con il link personale per partecipare al webinar. Se non la trovi, controlla la cartella spam.</p>
+            <button class="btn btn-full" type="button" data-close>Chiudi</button>
           </div>
-          <h3>Grazie per esserti registrato!</h3>
-          <!-- El email con el link personale lo envía Zoom (integración/API pendiente, p7 del plan) -->
-          <p>Ti abbiamo inviato un'email con il link personale per partecipare al webinar. Se non la trovi, controlla la cartella spam.</p>
         </div>
 
-        <div class="form-panel" id="form-error" hidden>
-          <h3>Ops! Qualcosa &egrave; andato storto durante l&rsquo;invio del modulo. Riprova.</h3>
-          <button class="btn btn-full" id="retry-btn" type="button">Riprova</button>
+        <div class="modal-overlay" id="error-overlay" hidden>
+          <div class="form-panel modal" id="form-error" role="dialog" aria-modal="true" aria-labelledby="error-title">
+            <button class="modal-close" type="button" data-close aria-label="Chiudi">×</button>
+            <h3 id="error-title">Ops! Qualcosa &egrave; andato storto durante l&rsquo;invio del modulo. Riprova.</h3>
+            <button class="btn btn-full" id="retry-btn" type="button">Riprova</button>
+            <button class="btn btn-full btn-ghost" type="button" data-close>Chiudi</button>
+          </div>
         </div>
       </aside>
     </div>
@@ -471,9 +527,9 @@ const CONFIG = {
   SUPABASE_URL: "https://wgydhadvbighajaumlxe.supabase.co",
   SUPABASE_ANON_KEY: "sb_publishable_OUX8LRglD-kvd6LEQ7pykA_Wisyh2E5",
   TABLE: "webinar_registrations_italia",
-  // Data confermata dal Copy Plan (mercoledì 11 novembre 2026, 11:00 CET).
-  WEBINAR_DAY: "11",
-  WEBINAR_ISO: "2026-11-11T11:00:00+01:00",
+  // Data confermata dal Copy Plan aggiornato 14 Oct 2026 (giovedì 19 novembre 2026, 11:00 CET).
+  WEBINAR_DAY: "19",
+  WEBINAR_ISO: "2026-11-19T11:00:00+01:00",
   DATE_CONFIRMED: true,
 };
 
@@ -512,13 +568,13 @@ function injectEventJsonLd() {
   const data = {
     "@context": "https://schema.org",
     "@type": "Event",
-    name: "Perché la resilienza dei dati è fondamentale per la sopravvivenza aziendale",
+    name: "Sopravvivere agli attacchi informatici basati sull’IA: costruire la resilienza per garantire il ripristino e il benessere dei team IT",
     eventStatus: "https://schema.org/EventScheduled",
     eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
     startDate: CONFIG.WEBINAR_ISO,
     organizer: { "@type": "Organization", name: "Object First", url: "https://objectfirst.com" },
     location: { "@type": "VirtualLocation", url: "https://objectfirst.com" },
-    description: "Webinar: dati Omdia 2026, principi Zero Trust e Immutabilità assoluta per la resilienza dei backup.",
+    description: "Webinar Object First e Veeam: come mantenere i backup ripristinabili anche con le credenziali di amministratore compromesse.",
   };
   const s = document.createElement("script");
   s.type = "application/ld+json";
@@ -627,25 +683,53 @@ async function submitRegistration(payload) {
 function initForm() {
   const form = document.getElementById("reg-form");
   if (!form) return;
-  const success = document.getElementById("form-success");
-  const failure = document.getElementById("form-error");
+  const successOverlay = document.getElementById("success-overlay");
+  const failureOverlay = document.getElementById("error-overlay");
   const submitBtn = document.getElementById("submit-btn");
   const btnLabel = submitBtn.querySelector(".btn-label");
-  document.getElementById("retry-btn").addEventListener("click", () => {
-    failure.hidden = true;
-    form.hidden = false;
+  const openModal = (overlay) => {
+    overlay.hidden = false;
+    requestAnimationFrame(() => overlay.classList.add("open"));
+    document.body.classList.add("modal-open");
+    const dlg = overlay.querySelector(".modal");
+    const focusable = dlg.querySelector("#retry-btn, .btn, .modal-close");
+    if (focusable) focusable.focus();
+  };
+  const closeModal = (overlay) => {
+    overlay.classList.remove("open");
+    document.body.classList.remove("modal-open");
+    setTimeout(() => { overlay.hidden = true; }, 250);
+  };
+  document.querySelectorAll(".modal-overlay").forEach((overlay) => {
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) closeModal(overlay);
+    });
+    overlay.querySelectorAll("[data-close]").forEach((btn) => {
+      btn.addEventListener("click", () => closeModal(overlay));
+    });
   });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      document.querySelectorAll(".modal-overlay.open").forEach(closeModal);
+    }
+  });
+  document.getElementById("retry-btn").addEventListener("click", () => {
+    closeModal(failureOverlay);
+  });
+  const showSuccess = (viaHoneypot) => {
+    // TODO(Zoom): aquí irá POST /api/register → Zoom Add Registrant.
+    // Zoom enviará el link personale por email (confirmación + reminders).
+    openModal(successOverlay);
+  };
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    failure.hidden = true;
     if (!validate(form)) {
       const bad = form.querySelector(".field.invalid input, .field.invalid select");
       if (bad) bad.focus();
       return;
     }
     if (form.elements["sito_web"].value !== "") {
-      form.hidden = true;
-      success.hidden = false;
+      showSuccess(true);
       return;
     }
     const ruolo = form.elements["ruolo"].value.trim();
@@ -664,13 +748,11 @@ function initForm() {
     btnLabel.textContent = "Invio in corso…";
     try {
       await submitRegistration(payload);
-      form.hidden = true;
-      success.hidden = false;
-      success.scrollIntoView({ behavior: "smooth", block: "center" });
+      form.reset();
+      showSuccess(false);
     } catch (err) {
       console.error(err);
-      form.hidden = true;
-      failure.hidden = false;
+      openModal(failureOverlay);
     } finally {
       submitBtn.disabled = false;
       btnLabel.textContent = "Registrati ora";
