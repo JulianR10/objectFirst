@@ -6,22 +6,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sopravvivere agli attacchi IA | Webinar Object First</title>
   <meta name="description" content="Webinar Object First e Veeam: come mantenere i backup ripristinabili anche con le credenziali di amministratore compromesse. Online · 19 novembre 2026 · 11:00 CET.">
-  <link rel="canonical" href="https://objectfirst.vercel.app/">
-  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://www.objectfirst.online/">
+  <meta name="theme-color" content="#5b00b3">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Object First">
   <meta property="og:locale" content="it_IT">
   <meta property="og:title" content="Sopravvivere agli attacchi informatici basati sull’IA: costruire la resilienza per garantire il ripristino e il benessere dei team IT">
   <meta property="og:description" content="L’IA ha dato agli aggressori strumenti più rapidi e sofisticati. Scopri come mantenere i backup ripristinabili e perché la resilienza riguarda le persone tanto quanto la tecnologia.">
-  <meta property="og:url" content="https://objectfirst.vercel.app/">
-  <meta property="og:image" content="https://objectfirst.vercel.app/og-cover.png">
-  <meta property="og:image:secure_url" content="https://objectfirst.vercel.app/og-cover.png">
+  <meta property="og:url" content="https://www.objectfirst.online/">
+  <meta property="og:image" content="https://www.objectfirst.online/og-cover.png">
+  <meta property="og:image:secure_url" content="https://www.objectfirst.online/og-cover.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Object First — Webinar: Sopravvivere agli attacchi informatici basati sull’IA">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://objectfirst.vercel.app/og-cover.png">
+  <meta name="twitter:image" content="https://www.objectfirst.online/og-cover.png">
+  <meta name="twitter:title" content="Sopravvivere agli attacchi informatici basati sull’IA | Webinar Object First">
+  <meta name="twitter:description" content="Webinar Object First e Veeam · 19 novembre 2026 · 11:00 CET. Come mantenere i backup ripristinabili quando la prevenzione fallisce.">
+  <!-- Event estático en el HTML (no inyectado por JS) para que Google y LinkedIn lo lean sin ejecutar scripts -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Sopravvivere agli attacchi informatici basati sull’IA: costruire la resilienza per garantire il ripristino e il benessere dei team IT",
+  "description": "Webinar Object First e Veeam: come mantenere i backup ripristinabili anche con le credenziali di amministratore compromesse.",
+  "image": "https://www.objectfirst.online/og-cover.png",
+  "url": "https://www.objectfirst.online/",
+  "inLanguage": "it",
+  "startDate": "2026-11-19T11:00:00+01:00",
+  "endDate": "2026-11-19T12:00:00+01:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+  "location": {
+    "@type": "VirtualLocation",
+    "url": "https://www.objectfirst.online/"
+  },
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": 0,
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "url": "https://www.objectfirst.online/"
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "Object First",
+    "url": "https://objectfirst.com"
+  },
+  "performer": [
+    {
+      "@type": "Person",
+      "name": "Simona Riela",
+      "jobTitle": "Senior Channel and Territory Manager Italy",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Object First"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Danilo Chiavari",
+      "jobTitle": "Sr. Presales Manager, Italy & Turkey",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Veeam"
+      }
+    }
+  ]
+}
+  </script>
   <!-- Graphik Trial local (misma familia que objectfirst.com): preload + @font-face en <style> -->
   <link rel="preload" href="fonts/Graphik-Regular-Trial.otf" as="font" type="font/otf" crossorigin>
   <link rel="preload" href="fonts/Graphik-Semibold-Trial.otf" as="font" type="font/otf" crossorigin>
@@ -45,22 +101,24 @@
 }
 /* Tokens oficiales: Brand Guidelines v1.0 (2025).
    Absolute Black #161515 · White #FFFFFF · Resilient Purple #5B00B3 ·
-   Cadmium Orange #FF6131 · Veeam Green #00AD4E · Breach Red #E03400. */
+   Cadmium Orange #FF6131 · Veeam Green #00AD4E · Breach Red #E03400.
+   Grises secundarios: Dark #666666 · Medium #C9C9C9 · Gray #E8E8E8 · Light #F8F8F8.
+   Escala tipográfica Major Third (16px): 13 · 16 · 20 · 25 · 31 · 39 · 49 · 61. */
 :root {
   --black: #161515;
   --purple: #5b00b3;
   --orange: #ff6131;
-  --orange-soft: rgba(255, 97, 49, 0.12);
   --ink: #161515;
-  --muted: #4c4756;
-  --faint: #6f6a7a;
-  --line: rgba(22, 21, 21, 0.14);
+  --muted: #666666;
+  --line: #e8e8e8;
+  --line-strong: #c9c9c9;
+  --light: #f8f8f8;
   --card: #ffffff;
   --green: #00ad4e;
   --red: #e03400;
   --radius: 16px;
   --wrap: 1140px;
-  --font: "Graphik", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --font: "Graphik", "Inter Tight", Arial, sans-serif;
   --ease: cubic-bezier(0.22, 0.9, 0.28, 1);
 }
 * { box-sizing: border-box; }
@@ -93,10 +151,9 @@ body::before {
 .header-inner { display: flex; align-items: center; gap: 28px; padding-top: 12px; padding-bottom: 12px; }
 .site-header.scrolled { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35); }
 .brand { display: inline-flex; align-items: center; margin-right: auto; padding: 6px; margin-left: -6px; line-height: 0; }
-.brand svg { height: 40px; width: auto; display: block; }
 .header-nav { display: flex; gap: 22px; }
-.header-nav a { color: rgba(255, 255, 255, 0.85); text-decoration: none; font-size: 0.92rem; font-weight: 500; }
-.header-nav a:hover { color: #fff; }
+.header-nav a { color: #fff; text-decoration: none; font-size: 1rem; font-weight: 500; }
+.header-nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .btn {
   position: relative; display: inline-flex; align-items: center; justify-content: center;
   background: var(--orange); color: #fff;
@@ -113,28 +170,28 @@ body::before {
 .btn:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
   outline: 3px solid var(--orange); outline-offset: 3px;
 }
-.btn-small { padding: 10px 22px; font-size: 0.8125rem; border-radius: 10px; }
+.btn-small { padding: 10px 22px; font-size: 0.8125rem; }
 .btn-full { width: 100%; }
 .btn[disabled] { opacity: 0.7; cursor: wait; transform: none; }
 .hero { position: relative; padding: 96px 0 84px; z-index: 1; }
 .hero .wrap { position: relative; z-index: 2; }
 .badge {
   display: inline-block; text-transform: uppercase; letter-spacing: 0.16em;
-  font-size: 0.76rem; font-weight: 600; color: #fff;
+  font-size: 0.8125rem; font-weight: 600; color: #fff;
   background: var(--purple); border: 0;
   border-radius: 999px; padding: 8px 18px; margin-bottom: 24px;
 }
 .hero h1 {
-  font-size: clamp(2.5rem, 6vw, 4.75rem); font-weight: 600;
-  line-height: 1.05; letter-spacing: -0.025em; margin: 0 0 16px; color: var(--ink);
+  font-size: clamp(2.4375rem, 6vw, 3.8125rem); font-weight: 600;
+  line-height: 1.1; letter-spacing: -0.03em; margin: 0 0 16px; color: var(--ink);
 }
 .hero-sub {
-  font-size: clamp(1.25rem, 2.6vw, 1.75rem); font-weight: 500;
-  line-height: 1.3; letter-spacing: -0.015em; margin: 0 0 24px; color: #2b2833;
+  font-size: clamp(1.25rem, 2.6vw, 1.5625rem); font-weight: 500;
+  line-height: 1.3; letter-spacing: -0.02em; margin: 0 0 24px; color: var(--ink);
 }
 .hero-meta { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 30px; }
 .meta-pill {
-  display: inline-block; font-size: 0.95rem; font-weight: 500; color: var(--ink);
+  display: inline-block; font-size: 1rem; font-weight: 500; color: var(--ink);
   background: var(--card); border: 1px solid var(--line);
   border-radius: 999px; padding: 8px 18px;
   box-shadow: 0 4px 14px rgba(22, 21, 21, 0.05);
@@ -149,39 +206,44 @@ body.date-ok .date-tbc { display: none; }
 .cd-cell {
   min-width: 84px; text-align: center;
   background: var(--card); border: 1px solid var(--line);
-  border-radius: 14px; padding: 12px 8px 10px;
+  border-radius: var(--radius); padding: 12px 8px 10px;
   box-shadow: 0 4px 14px rgba(22, 21, 21, 0.05);
 }
-.cd-num { display: block; font-size: 1.9rem; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.1; }
-.cd-lab { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.cd-num { display: block; font-size: 1.9375rem; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.cd-lab { font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
 .cd-note {
   margin: 0;
   font-weight: 600;
-  color: #b93e00;
+  color: var(--red);
 }
-.stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(91, 0, 179, 0.04); }
-.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; padding-top: 44px; padding-bottom: 20px; }
-.stats-source { margin: 0 auto; padding-bottom: 36px; font-size: 0.85rem; color: var(--faint); text-align: right; }
-.stat-num { margin: 0; font-size: clamp(2.4rem, 4vw, 3.4rem); font-weight: 600; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; color: var(--ink); }
-.stat-lab { margin: 8px 0 0; color: var(--muted); font-size: 0.98rem; }
+.stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--light); }
+.stats-grid { display: grid; grid-template-columns: 1fr 3fr; gap: 28px; padding-top: 44px; padding-bottom: 60px; }
+.stat-num { margin: 0; font-size: clamp(2.4375rem, 4vw, 3.0625rem); font-weight: 600; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; color: var(--ink); }
+.stat-lab { margin: 8px 0 0; color: var(--muted); font-size: 1rem; }
+/* Cada grupo de stats es una caja; la fuente va centrada sobre el borde inferior */
+.stat-group { position: relative; padding: 28px 24px 36px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); }
+.stat-group--omdia { display: grid; grid-template-columns: repeat(3, 1fr); }
+.stat-group--omdia .stat { padding: 0 24px; }
+.stat-group--omdia .stat:first-child { padding-left: 0; }
+.stat-group--omdia .stat:nth-last-child(2) { padding-right: 0; }
+.stat + .stat { border-left: 1px solid var(--line); }
+.stat-src { position: absolute; left: 50%; bottom: 0; transform: translate(-50%, 50%); margin: 0; padding: 4px 12px; font-size: 0.8125rem; color: var(--muted); white-space: nowrap; background: var(--card); border: 1px solid var(--line); border-radius: 999px; }
 .content-grid { display: grid; grid-template-columns: 1fr 400px; gap: 56px; padding-top: 64px; padding-bottom: 88px; align-items: start; }
-.question { font-size: clamp(1.3rem, 2.2vw, 1.6rem); font-weight: 600; letter-spacing: -0.02em; color: var(--ink); margin-top: 0; }
-.body-copy p { color: #3d3847; }
-.hook { font-size: 1.12rem; font-weight: 500; color: var(--ink); }
+.question { font-size: clamp(1.25rem, 2.2vw, 1.5625rem); font-weight: 600; letter-spacing: -0.02em; color: var(--ink); margin-top: 0; }
+.body-copy p { color: var(--ink); }
+.takeaways-title { margin: 1em 0 0; font-size: 1rem; font-weight: 500; color: var(--ink); }
+.hook { font-size: 1.25rem; font-weight: 500; color: var(--ink); }
 .closing { font-weight: 600; color: var(--ink); border-left: 3px solid var(--orange); padding-left: 16px; }
 .takeaways { display: grid; gap: 16px; margin: 32px 0; }
 .card {
   position: relative; background: var(--card); border: 1px solid var(--line);
   border-radius: var(--radius); padding: 22px 24px 22px 88px; overflow: hidden;
   box-shadow: 0 10px 28px rgba(22, 21, 21, 0.06);
-  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), background 0.3s var(--ease);
 }
-.card:hover { transform: translateY(-3px); border-color: rgba(255, 97, 49, 0.5); background: #fff7f3; }
-.card h3 { margin: 0; font-size: 1.08rem; font-weight: 500; line-height: 1.45; }
+.card h3 { margin: 0; font-size: 1.25rem; font-weight: 500; line-height: 1.4; }
 .card-num {
   position: absolute; left: 24px; top: 50%; transform: translateY(-50%);
-  font-size: 1.6rem; font-weight: 600; color: transparent;
-  -webkit-text-stroke: 1.5px var(--orange);
+  font-size: 1.5625rem; font-weight: 600; color: var(--orange);
 }
 .speaker {
   display: flex; gap: 18px; align-items: center;
@@ -189,48 +251,51 @@ body.date-ok .date-tbc { display: none; }
   border-radius: var(--radius); padding: 24px; margin: 36px 0;
   box-shadow: 0 10px 28px rgba(22, 21, 21, 0.06);
 }
+.speakers-title { margin: 48px 0 0; font-size: clamp(1.25rem, 2.2vw, 1.5625rem); font-weight: 600; letter-spacing: -0.02em; color: var(--ink); scroll-margin-top: 96px; }
+.speakers-title + .speaker { margin-top: 20px; }
+.speaker + .speaker { margin-top: -20px; }
 .speaker-avatar {
   flex: 0 0 72px; width: 72px; height: 72px; border-radius: 50%; overflow: hidden;
   border: 2px solid var(--line);
 }
 .speaker-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
-.speaker-name { font-weight: 600; font-size: 1.1rem; margin: 0; color: var(--ink); }
+.speaker-name { font-weight: 600; font-size: 1.25rem; margin: 0; color: var(--ink); }
 .speaker-role { margin: 2px 0 0; color: var(--muted); }
 .form-card {
   position: sticky; top: 92px;
   background: #ffffff;
-  border: 1px solid var(--line); border-radius: 20px;
+  border: 1px solid var(--line); border-radius: var(--radius);
   box-shadow: 0 24px 64px rgba(22, 21, 21, 0.12);
   padding: 34px 30px; overflow: hidden;
 }
 .form-card h2 { position: relative; margin: 0 0 22px; color: var(--ink); font-size: 1.5625rem; line-height: 1.3; letter-spacing: -0.02em; font-weight: 600; }
 .form-card form { position: relative; }
 .field { margin-bottom: 15px; }
-.field label, .field legend { display: block; font-weight: 500; font-size: 0.9rem; margin-bottom: 6px; color: #2b2833; }
+.field label, .field legend { display: block; font-weight: 500; font-size: 1rem; margin-bottom: 6px; color: var(--ink); }
 fieldset.field { border: 0; padding: 0; }
 .field input[type="text"], .field input[type="email"], .field select {
-  width: 100%; border: 1px solid rgba(22, 21, 21, 0.2); border-radius: 10px;
+  width: 100%; border: 1px solid var(--line-strong); border-radius: 8px;
   padding: 12px 13px; font-size: 1rem; font-family: inherit;
   background: #ffffff; color: var(--ink);
   transition: border-color 0.2s var(--ease), background 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
-.field select option { color: #111; }
+.field select option { color: var(--ink); }
 .field input:focus, .field select:focus {
   border-color: var(--orange); background: #ffffff;
-  box-shadow: 0 0 0 3px rgba(255, 97, 49, 0.25); outline: none;
+  box-shadow: 0 0 0 1px var(--orange); outline: none;
 }
 .radio, .checkbox { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; margin-bottom: 8px; cursor: pointer; }
 .radio input, .checkbox input { margin-top: 4px; accent-color: var(--orange); width: 17px; height: 17px; flex-shrink: 0; }
-.consent { font-size: 0.86rem; color: var(--muted); }
-/* Errores (variante chiara): texto #c02a00 sobre fondo claro. */
-.field-error { display: none; color: #c02a00; font-size: 0.85rem; margin: 6px 0 0; }
+.consent { font-size: 0.8125rem; color: var(--muted); }
+/* Errores: Breach Red #E03400 (5.7:1 sobre blanco). */
+.field-error { display: none; color: var(--red); font-size: 0.8125rem; margin: 6px 0 0; }
 .field.invalid .field-error { display: block; }
 .field.invalid input, .field.invalid select { border-color: var(--red); }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-.under-btn, .form-foot { font-size: 0.82rem; color: var(--muted); }
+.under-btn, .form-foot { font-size: 0.8125rem; color: var(--muted); }
 .under-btn a, .modal p a { color: var(--purple); }
 .modal p a { overflow-wrap: anywhere; }
-.noscript-note { font-size: 0.9rem; color: #a33300; background: var(--orange-soft); border: 1px solid rgba(255, 97, 49, 0.45); border-radius: 10px; padding: 10px 14px; }
+.noscript-note { font-size: 1rem; color: var(--red); background: var(--light); border: 1px solid var(--red); border-radius: 8px; padding: 10px 14px; }
 .form-panel { position: relative; text-align: center; }
 .form-panel h3 { color: var(--ink); margin: 14px 0 10px; font-weight: 600; }
 .form-panel p { color: var(--muted); }
@@ -246,7 +311,7 @@ fieldset.field { border: 0; padding: 0; }
 .modal-overlay[hidden] { display: none; }
 .modal {
   position: relative; width: min(480px, 100%);
-  background: #fff; border-radius: 20px;
+  background: #fff; border-radius: var(--radius);
   box-shadow: 0 32px 80px rgba(22, 21, 21, 0.3);
   padding: 36px 32px 30px; text-align: center;
   transform: translateY(12px) scale(0.98);
@@ -257,7 +322,7 @@ fieldset.field { border: 0; padding: 0; }
   position: absolute; top: 12px; right: 12px;
   width: 36px; height: 36px; border-radius: 50%;
   border: 1px solid var(--line); background: #fff;
-  font-size: 1.2rem; line-height: 1; cursor: pointer; color: var(--muted);
+  font-size: 1.25rem; line-height: 1; cursor: pointer; color: var(--muted);
 }
 .modal-close:hover { border-color: var(--orange); color: var(--ink); }
 .modal .btn { margin-top: 18px; }
@@ -275,29 +340,38 @@ body.modal-open { overflow: hidden; }
 .footer-inner { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
 .footer-brand { display: flex; align-items: center; gap: 14px; }
 .footer-brand img { height: 30px; width: auto; display: block; }
-.tagline { font-weight: 600; font-size: 0.95rem; letter-spacing: -0.01em; color: var(--ink); border-left: 1px solid var(--line); padding-left: 14px; }
+.tagline { font-weight: 600; font-size: 1rem; letter-spacing: -0.01em; color: var(--ink); border-left: 1px solid var(--line); padding-left: 14px; }
 .social { display: flex; gap: 20px; align-items: center; }
 .social a { display: inline-flex; line-height: 0; color: #161515; }
 .social a:hover { color: var(--purple); }
 .social svg { width: 20px; height: 20px; }
 .legal a { color: var(--muted); text-decoration: none; }
 .legal a:hover { color: var(--purple); }
-.legal { width: 100%; font-size: 0.85rem; margin: 8px 0 0; color: var(--faint); }
+.legal { width: 100%; font-size: 0.8125rem; margin: 8px 0 0; color: var(--muted); }
 @media (max-width: 920px) {
   .content-grid { grid-template-columns: 1fr; gap: 40px; }
   .form-card { position: static; }
   .hero { padding: 68px 0 60px; }
-  .hero h1 { font-size: 2.5rem; }
-  .stats-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
-  .stat { text-align: center; }
-  .stats-source { text-align: center; }
+  .hero h1 { font-size: 2.4375rem; }
+  /* Mobile: las stats van justo encima del formulario (body-copy → stats → form) */
+  main { display: flex; flex-direction: column; }
+  .content-grid { display: contents; }
+  .body-copy { order: 1; width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 56px 24px 0; }
+  .stats { order: 2; margin-top: 48px; }
+  .form-card { order: 3; margin: 32px 24px 72px; }
+  /* Stats en lista: número a la izquierda, texto alineado a la izquierda */
+  .stats-grid { grid-template-columns: 1fr; gap: 36px; padding-top: 32px; padding-bottom: 44px; }
+  .stat-group, .stat-group--omdia { display: block; padding: 0 18px 10px; }
+  .stat, .stat-group--omdia .stat { display: grid; grid-template-columns: 6.2rem 1fr; gap: 16px; align-items: center; padding: 18px 0; text-align: left; }
+  .stat + .stat { border-left: 0; border-top: 1px solid var(--line); }
+  .stat-num { font-size: 1.9375rem; }
+  .stat-lab { margin: 0; font-size: 1rem; line-height: 1.4; }
   .header-nav { display: none; }
   .cd-cell { min-width: 70px; }
-  .brand svg { height: 34px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .btn, .card { transition: none; }
+  .btn { transition: none; }
   .check circle, .check path { animation: none; stroke-dashoffset: 0; }
 }
   </style>
@@ -306,7 +380,7 @@ body.modal-open { overflow: hidden; }
 
   <header class="site-header" id="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="https://objectfirst.com" target="_blank" rel="noopener" aria-label="Object First"><img src="logo.png" alt="Object First" width="96" height="50"></a>
+      <a class="brand" href="https://objectfirst.com" target="_blank" rel="noopener" aria-label="Object First"><img src="logo.svg" alt="Object First" width="96" height="50"></a>
       <nav class="header-nav" aria-label="Sezioni">
         <a href="#introduzione">Il webinar</a>
         <a href="#speaker">Speakers</a>
@@ -339,24 +413,29 @@ body.modal-open { overflow: hidden; }
 
     <section class="stats" id="dati" aria-label="Dati chiave">
       <div class="wrap stats-grid">
-        <div class="stat">
-          <p class="stat-num">59%</p>
-          <p class="stat-lab">dei professionisti IT ha pensato di cambiare lavoro per la pressione del proprio ruolo</p>
+        <div class="stat-group stat-group--of">
+          <div class="stat">
+            <p class="stat-num">60%</p>
+            <p class="stat-lab">dei professionisti IT ha pensato di cambiare lavoro per la pressione del proprio ruolo</p>
+          </div>
+          <p class="stat-src stat-src--of">Object First Research 2026</p>
         </div>
-        <div class="stat">
-          <p class="stat-num">4 su 5</p>
-          <p class="stat-lab">attacchi prendono di mira i backup</p>
-        </div>
-        <div class="stat">
-          <p class="stat-num">79%</p>
-          <p class="stat-lab">ha impiegato più di 5 giorni lavorativi per tornare operativo dopo un attacco</p>
-        </div>
-        <div class="stat">
-          <p class="stat-num">61%</p>
-          <p class="stat-lab">dei dati recuperati, in media, dopo un attacco</p>
+        <div class="stat-group stat-group--omdia">
+          <div class="stat">
+            <p class="stat-num">4 su 5</p>
+            <p class="stat-lab">attacchi prendono di mira i backup</p>
+          </div>
+          <div class="stat">
+            <p class="stat-num">79%</p>
+            <p class="stat-lab">ha impiegato più di 5 giorni lavorativi per tornare operativo dopo un attacco</p>
+          </div>
+          <div class="stat">
+            <p class="stat-num">61%</p>
+            <p class="stat-lab">dei dati recuperati, in media, dopo un attacco</p>
+          </div>
+          <p class="stat-src stat-src--omdia">Omdia Research 2026</p>
         </div>
       </div>
-      <p class="wrap stats-source">Fonti: Omdia Research 2026; ricerca Object First 2025</p>
     </section>
 
     <div class="wrap content-grid">
@@ -367,7 +446,7 @@ body.modal-open { overflow: hidden; }
 
         <p>Partecipa al webinar con Simona Riela (Object First) e Danilo Chiavari (Veeam) per capire perché la resilienza dei dati riguarda le persone tanto quanto la tecnologia. Partendo da nuove ricerche sul benessere dei professionisti IT e dalle più recenti tendenze su ransomware e ripristino, vedremo cosa serve per garantire un ripristino affidabile quando la prevenzione fallisce.</p>
 
-        <p>Durante il webinar vedremo:</p>
+        <h2 class="takeaways-title">Durante il webinar vedremo:</h2>
 
         <div class="takeaways">
           <article class="card">
@@ -390,7 +469,9 @@ body.modal-open { overflow: hidden; }
 
         <p class="closing">Oggi la resilienza dei dati significa anche resilienza dei team.</p>
 
-        <div class="speaker" id="speaker">
+        <h2 class="speakers-title" id="speaker">Speakers</h2>
+
+        <div class="speaker">
           <div class="speaker-avatar" aria-hidden="true">
             <img src="images/simona.webp" alt="" width="72" height="72" loading="lazy" decoding="async">
           </div>
@@ -570,25 +651,6 @@ function fillTokens() {
   if (CONFIG.DATE_CONFIRMED) document.body.classList.add("date-ok");
 }
 
-function injectEventJsonLd() {
-  if (!CONFIG.DATE_CONFIRMED) return;
-  const data = {
-    "@context": "https://schema.org",
-    "@type": "Event",
-    name: "Sopravvivere agli attacchi informatici basati sull’IA: costruire la resilienza per garantire il ripristino e il benessere dei team IT",
-    eventStatus: "https://schema.org/EventScheduled",
-    eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
-    startDate: CONFIG.WEBINAR_ISO,
-    organizer: { "@type": "Organization", name: "Object First", url: "https://objectfirst.com" },
-    location: { "@type": "VirtualLocation", url: "https://objectfirst.com" },
-    description: "Webinar Object First e Veeam: come mantenere i backup ripristinabili anche con le credenziali di amministratore compromesse.",
-  };
-  const s = document.createElement("script");
-  s.type = "application/ld+json";
-  s.textContent = JSON.stringify(data);
-  document.head.appendChild(s);
-}
-
 function fillProvinces() {
   const sel = document.getElementById("provincia");
   if (!sel) return;
@@ -766,12 +828,10 @@ function init() {
   if (__ofStarted) return;
   __ofStarted = true;
   fillTokens();
-  injectEventJsonLd();
   fillProvinces();
   initCountdown();
   initHeader();
   initForm();
-  console.log("landing v2 init ok");
 }
 
 if (document.readyState === "loading") {

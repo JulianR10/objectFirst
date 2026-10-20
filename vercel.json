@@ -1,3 +1,21 @@
 {
-  "crons": [{ "path": "/api/keepalive", "schedule": "0 7 * * *" }]
+  "crons": [
+    {
+      "path": "/api/keepalive",
+      "schedule": "0 7 * * *"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/:path(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "objectfirst.vercel.app"
+        }
+      ],
+      "destination": "https://www.objectfirst.online/:path",
+      "permanent": true
+    }
+  ]
 }

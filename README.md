@@ -21,4 +21,4 @@ vercel dev          # sitio + /api con las variables de .env.local
 
 ## Deploy
 
-`vercel --prod` (proyecto `object-first`, no conectado a Git) → https://objectfirst.vercel.app/
+`vercel --prod` (proyecto `object-first`, no conectado a Git) → https://www.objectfirst.online/

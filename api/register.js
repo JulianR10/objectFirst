@@ -43,6 +43,10 @@ async function addZoomRegistrant(r) {
         job_title: r.ruolo,
         country: "IT",
         state: r.provincia,
+        // El título debe coincidir exacto con la "Pregunta personalizada" del webinar en Zoom.
+        custom_questions: [
+          { title: "Consenso marketing", value: r.consent_marketing ? "Sì" : "No" },
+        ],
       }),
     }
   );
