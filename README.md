@@ -21,4 +21,7 @@ vercel dev          # sitio + /api con las variables de .env.local
 
 ## Deploy
 
-`vercel --prod` (proyecto `object-first`, no conectado a Git) → https://www.objectfirst.online/
+Proyecto Vercel `object-first`, conectado a GitHub (`JulianR10/objectFirst`):
+
+- push a `main` → deploy de **producción** → https://www.objectfirst.online/
+- push a cualquier otra rama → deploy de preview con URL propia
