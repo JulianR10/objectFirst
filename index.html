@@ -519,12 +519,6 @@ body.modal-open { overflow: hidden; }
           </div>
 
           <div class="field">
-            <label for="telefono">Telefono</label>
-            <input type="tel" id="telefono" name="telefono" autocomplete="tel" inputmode="tel" placeholder="+39 333 123 4567">
-            <p class="field-error" data-error-for="telefono">Inserisci un numero di telefono valido.</p>
-          </div>
-
-          <div class="field">
             <label for="azienda">Azienda*</label>
             <input type="text" id="azienda" name="azienda" autocomplete="organization" required>
             <p class="field-error" data-error-for="azienda">Inserisci il nome dell&rsquo;azienda.</p>
@@ -541,6 +535,12 @@ body.modal-open { overflow: hidden; }
             <select id="paese" name="paese" required>
               <option value="IT" selected>Italia</option>
             </select>
+          </div>
+
+          <div class="field">
+            <label for="telefono">Telefono</label>
+            <input type="tel" id="telefono" name="telefono" autocomplete="tel" inputmode="tel" placeholder="+39 333 123 4567">
+            <p class="field-error" data-error-for="telefono">Inserisci un numero di telefono valido.</p>
           </div>
 
           <!-- Consenso marketing facoltativo: nel Copy Plan è un blocco separato dai "FIELDS (all required)"
