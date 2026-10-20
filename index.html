@@ -193,7 +193,7 @@ body.date-ok .date-tbc { display: none; }
   flex: 0 0 72px; width: 72px; height: 72px; border-radius: 50%; overflow: hidden;
   border: 2px solid var(--line);
 }
-.speaker-avatar svg { display: block; width: 100%; height: 100%; }
+.speaker-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
 .speaker-name { font-weight: 600; font-size: 1.1rem; margin: 0; color: var(--ink); }
 .speaker-role { margin: 2px 0 0; color: var(--muted); }
 .form-card {
@@ -228,7 +228,8 @@ fieldset.field { border: 0; padding: 0; }
 .field.invalid input, .field.invalid select { border-color: var(--red); }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .under-btn, .form-foot { font-size: 0.82rem; color: var(--muted); }
-.under-btn a { color: var(--purple); }
+.under-btn a, .modal p a { color: var(--purple); }
+.modal p a { overflow-wrap: anywhere; }
 .noscript-note { font-size: 0.9rem; color: #a33300; background: var(--orange-soft); border: 1px solid rgba(255, 97, 49, 0.45); border-radius: 10px; padding: 10px 14px; }
 .form-panel { position: relative; text-align: center; }
 .form-panel h3 { color: var(--ink); margin: 14px 0 10px; font-weight: 600; }
@@ -273,7 +274,7 @@ body.modal-open { overflow: hidden; }
 .site-footer { border-top: 1px solid var(--line); background: #ffffff; padding: 44px 0; }
 .footer-inner { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
 .footer-brand { display: flex; align-items: center; gap: 14px; }
-.footer-brand svg { height: 30px; width: auto; display: block; }
+.footer-brand img { height: 30px; width: auto; display: block; }
 .tagline { font-weight: 600; font-size: 0.95rem; letter-spacing: -0.01em; color: var(--ink); border-left: 1px solid var(--line); padding-left: 14px; }
 .social { display: flex; gap: 20px; align-items: center; }
 .social a { display: inline-flex; line-height: 0; color: #161515; }
@@ -307,9 +308,8 @@ body.modal-open { overflow: hidden; }
     <div class="wrap header-inner">
       <a class="brand" href="https://objectfirst.com" target="_blank" rel="noopener" aria-label="Object First"><img src="logo.png" alt="Object First" width="96" height="50"></a>
       <nav class="header-nav" aria-label="Sezioni">
-        <a href="#dati">Dati</a>
-        <a href="#perche">Perché</a>
-        <a href="#speaker">Speaker</a>
+        <a href="#introduzione">Il webinar</a>
+        <a href="#speaker">Speakers</a>
       </nav>
       <a class="btn btn-small" href="#main-form-container">Registrati ora</a>
     </div>
@@ -361,7 +361,7 @@ body.modal-open { overflow: hidden; }
 
     <div class="wrap content-grid">
       <section class="body-copy">
-        <p class="hook">L’intelligenza artificiale ha reso i team IT più produttivi che mai, ma ha dato anche agli aggressori strumenti più rapidi e sofisticati.</p>
+        <p class="hook" id="introduzione">L’intelligenza artificiale ha reso i team IT più produttivi che mai, ma ha dato anche agli aggressori strumenti più rapidi e sofisticati.</p>
 
         <p class="question">Quando la prevenzione fallisce, cosa succede alle persone che devono rimettere insieme i pezzi? E cosa serve per un ripristino di cui fidarsi?</p>
 
@@ -369,7 +369,7 @@ body.modal-open { overflow: hidden; }
 
         <p>Durante il webinar vedremo:</p>
 
-        <div class="takeaways" id="perche">
+        <div class="takeaways">
           <article class="card">
             <span class="card-num" aria-hidden="true">01</span>
             <h3>Perché gli aggressori prendono di mira innanzitutto i backup, e cosa significa per i team responsabili del ripristino</h3>
@@ -392,7 +392,7 @@ body.modal-open { overflow: hidden; }
 
         <div class="speaker" id="speaker">
           <div class="speaker-avatar" aria-hidden="true">
-            <svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="24" fill="#5B00B3"/><circle cx="24" cy="18" r="8" fill="#E8E8E8"/><path d="M10 42c2-8 8-12 14-12s12 4 14 12" fill="#E8E8E8"/></svg>
+            <img src="images/simona.webp" alt="" width="72" height="72" loading="lazy" decoding="async">
           </div>
           <div>
             <p class="speaker-name">Simona Riela</p>
@@ -402,7 +402,7 @@ body.modal-open { overflow: hidden; }
 
         <div class="speaker" id="speaker-2">
           <div class="speaker-avatar" aria-hidden="true">
-            <svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="24" fill="#00AD4E"/><circle cx="24" cy="18" r="8" fill="#E8E8E8"/><path d="M10 42c2-8 8-12 14-12s12 4 14 12" fill="#E8E8E8"/></svg>
+            <img src="images/danilo.webp" alt="" width="72" height="72" loading="lazy" decoding="async">
           </div>
           <div>
             <p class="speaker-name">Danilo Chiavari</p>
@@ -483,6 +483,11 @@ body.modal-open { overflow: hidden; }
           <p class="form-foot">Le informazioni fornite saranno utilizzate in conformit&agrave; con l&rsquo;Informativa sulla privacy di Object First.</p>
         </form>
 
+      </aside>
+    </div>
+  </main>
+
+  <!-- Pop-up fuera del aside sticky: si no, quedan debajo de la portada (stacking context) -->
         <div class="modal-overlay" id="success-overlay" hidden>
           <div class="form-panel modal" id="form-success" role="dialog" aria-modal="true" aria-labelledby="success-title">
             <button class="modal-close" type="button" data-close aria-label="Chiudi">×</button>
@@ -491,7 +496,7 @@ body.modal-open { overflow: hidden; }
             </div>
             <h3 id="success-title">Grazie per esserti registrato!</h3>
             <!-- El email con el link personale lo envía Zoom (vía /api/register, p7 del plan) -->
-            <p>Ti abbiamo inviato un'email con il link personale per partecipare al webinar. Se non la trovi, controlla la cartella spam.</p>
+            <p>Ti abbiamo inviato un'email con il link personale per partecipare al webinar. Se non la trovi, controlla la cartella spam o scrivi a <a href="mailto:arianna_ObjFirst@2leap.es">arianna_ObjFirst@2leap.es</a>.</p>
             <button class="btn btn-full" type="button" data-close>Chiudi</button>
           </div>
         </div>
@@ -504,14 +509,11 @@ body.modal-open { overflow: hidden; }
             <button class="btn btn-full btn-ghost" type="button" data-close>Chiudi</button>
           </div>
         </div>
-      </aside>
-    </div>
-  </main>
 
   <footer class="site-footer">
     <div class="wrap footer-inner">
       <div class="footer-brand">
-        <a class="brand" href="https://objectfirst.com" target="_blank" rel="noopener" aria-label="Object First"><svg xmlns="http://www.w3.org/2000/svg" width="747" height="393" viewBox="0 0 746.9 393.0"><path d="M746.93,0.00L-0.00,0.00L-0.00,393.00L746.93,393.00L746.93,0.00Z" fill="#5B00B3" fill-rule="evenodd"/><path d="M525.72,154.60C508.29,154.60 495.62,141.16 495.62,122.66C495.62,104.16 508.29,90.72 525.72,90.72C537.83,90.72 548.08,97.14 552.79,107.54L581.11,107.54C574.94,81.33 553.17,64.51 525.06,64.51C491.58,64.51 467.27,88.97 467.27,122.69C467.27,156.41 491.58,180.88 525.06,180.88C553.24,180.88 575.08,163.99 581.29,137.67L552.96,137.67C548.15,148.17 537.83,154.67 525.76,154.67L525.72,154.60Z" fill="#FFFFFF" fill-rule="evenodd"/><path d="M120.26,64.47C85.90,64.47 60.97,88.94 60.97,122.66C60.97,156.38 85.90,180.84 120.26,180.84C154.61,180.84 179.38,156.38 179.38,122.66C179.38,88.94 154.51,64.47 120.26,64.47C102.33,154.60 89.32,141.16 89.32,122.66C89.32,104.16 102.33,90.72 120.26,90.72C138.19,90.72 151.02,104.16 151.02,122.66C151.02,141.16 138.08,154.60 120.26,154.60Z" fill="#FFFFFF" fill-rule="evenodd"/><path d="M266.89,120.98L264.76,119.69L266.72,118.12C273.10,112.95 276.80,104.96 276.80,96.20C276.80,78.47 263.65,66.60 244.08,66.60L195.67,66.60L195.67,178.65L244.88,178.65C267.06,178.65 281.40,166.32 281.40,147.23C281.40,136.27 275.99,126.46 266.89,120.98L239.09,88.56C246.49,88.56 250.88,92.71 250.88,99.72C250.88,106.74 246.49,110.55 239.09,110.55L221.69,110.55L221.69,88.56L221.69,155.57L221.69,131.28L242.23,131.28C249.62,131.28 254.19,135.92 254.19,143.43C254.19,150.93 249.49,155.57 242.23,155.57Z" fill="#FFFFFF" fill-rule="evenodd"/><path d="M363.64,133.20L363.64,66.60L311.53,66.60L311.53,91.35L335.95,91.35L335.95,130.90C335.95,146.74 327.93,154.42 311.43,154.42C307.66,154.42 303.51,154.14 298.84,153.51L298.84,178.89C305.12,179.83 311.19,180.29 316.87,180.29C348.33,180.29 363.61,164.89 363.61,133.16L363.64,133.20Z" fill="#FFFFFF" fill-rule="evenodd"/><path d="M453.14,154.60L408.25,154.60L408.25,134.11L449.65,134.11L449.65,111.00L408.25,111.00L408.25,90.20L453.14,90.20L453.14,66.60L381.08,66.60L381.08,178.65L453.14,178.65L453.14,154.60Z" fill="#FFFFFF" fill-rule="evenodd"/><path d="M591.30,66.60L591.30,91.52L620.32,91.52L620.32,178.65L648.01,178.65L648.01,91.52L676.85,91.52L676.85,66.60L591.30,66.60Z" fill="#FFFFFF" fill-rule="evenodd"/><path d="M70.24,326.58L97.73,326.58L97.73,287.13L135.85,287.13L135.85,262.70L97.73,262.70L97.73,239.10L139.48,239.10L139.48,214.53L70.24,214.53L70.24,326.58Z" fill="#FFFFFF" fill-rule="evenodd"/><path d="M154.32,239.14L171.13,239.14L171.13,302.07L154.32,302.07L154.32,326.64L215.64,326.64L215.64,302.07L198.83,302.07L198.83,239.14L215.64,239.14L215.64,214.60L154.32,214.60L154.32,239.14Z" fill="#FFFFFF" fill-rule="evenodd"/><path d="M386.14,258.96C372.36,256.76 365.39,254.29 365.39,246.85C365.39,240.18 370.83,236.34 380.32,236.34C388.93,236.34 394.48,240.01 396.12,246.75L422.80,246.75C420.46,225.73 404.49,212.78 380.66,212.78C354.96,212.78 338.39,226.47 338.39,247.69C338.39,266.50 350.11,276.73 376.34,280.78C389.10,282.84 397.58,285.84 397.58,293.90C397.58,300.36 391.48,304.41 381.64,304.41C369.22,304.41 365.25,298.37 364.27,292.68L337.14,292.68C338.95,315.37 355.06,328.32 381.64,328.32C408.22,328.32 425.10,314.74 425.10,292.93C425.10,273.87 412.37,262.77 386.17,259.00L386.14,258.96Z" fill="#FFFFFF" fill-rule="evenodd"/><path d="M432.53,239.49L461.55,239.49L461.55,326.64L489.24,326.64L489.24,239.49L518.09,239.49L518.09,214.60L432.53,214.60L432.53,239.49Z" fill="#FFFFFF" fill-rule="evenodd"/><path d="M289.35,214.60C308.57,214.60 323.04,229.54 323.04,249.36C323.04,276.38 302.65,283.19 301.77,283.47L299.57,284.16L299.54,284.20L328.07,326.75L296.40,326.75L269.33,285.70L258.13,285.70L258.13,326.75L232.19,326.75L232.19,214.60L289.35,214.60L258.17,263.67L284.22,263.67C292.42,263.67 298.18,258.02 298.18,250.13C298.18,242.24 292.39,236.55 284.43,236.55L258.17,236.55Z" fill="#FFFFFF" fill-rule="evenodd"/></svg></a>
+        <a class="brand" href="https://objectfirst.com" target="_blank" rel="noopener" aria-label="Object First"><img src="logo.png" alt="Object First" width="58" height="30" loading="lazy"></a>
         <span class="tagline">Simply Resilient</span>
       </div>
       <div class="social">
