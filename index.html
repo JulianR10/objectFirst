@@ -543,13 +543,14 @@ body.modal-open { overflow: hidden; }
             <p class="field-error" data-error-for="telefono">Inserisci un numero di telefono valido.</p>
           </div>
 
-          <!-- Consenso marketing facoltativo: nel Copy Plan è un blocco separato dai "FIELDS (all required)"
-               e in UE il consenso non può essere condizione per registrarsi al webinar. -->
+          <!-- Consenso marketing OBBLIGATORIO per decisione del cliente (2026-10-21).
+               Ojo RGPD art. 7.4: en UE un consentimiento condicionado al registro puede no ser válido. -->
           <div class="field consent">
             <label class="checkbox">
-              <input type="checkbox" id="consent" name="consent">
-              <span>Selezionando questa casella, autorizzo Object First (U.S.) LLC, le sue affiliate e i partner autorizzati a utilizzare i miei dati personali per ricevere informazioni e aggiornamenti su prodotti, servizi, sondaggi ed eventi di Object First.</span>
+              <input type="checkbox" id="consent" name="consent" required>
+              <span>Selezionando questa casella, autorizzo Object First (U.S.) LLC, le sue affiliate e i partner autorizzati a utilizzare i miei dati personali per ricevere informazioni e aggiornamenti su prodotti, servizi, sondaggi ed eventi di Object First.*</span>
             </label>
+            <p class="field-error" data-error-for="consent">Per registrarti devi accettare questa condizione.</p>
           </div>
 
           <!-- Honeypot anti-spam: los humanos no lo ven ni lo rellenan -->
@@ -727,6 +728,7 @@ function validate(form) {
   ok = setInvalid("telefono", v("telefono") !== "" && !phoneOk(v("telefono"))) && ok;
   ok = setInvalid("azienda", v("azienda") === "") && ok;
   ok = setInvalid("ruolo", v("ruolo") === "") && ok;
+  ok = setInvalid("consent", !form.elements["consent"].checked) && ok;
   return ok;
 }
 

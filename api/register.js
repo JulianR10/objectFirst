@@ -107,6 +107,7 @@ module.exports = async function handler(req, res) {
   lead.provincia = "";
   lead.telefono = clean(b.telefono) || null; // facoltativo
   const missing = REQUIRED.filter((f) => !lead[f]);
+  if (!lead.consent_marketing) missing.push("consent_marketing"); // obligatorio (decisión del cliente)
   if (missing.length || !EMAIL_RE.test(lead.email_aziendale) || (lead.telefono && !phoneOk(lead.telefono))) {
     return res.status(400).json({ error: "invalid_fields", fields: missing });
   }
