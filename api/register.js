@@ -46,7 +46,6 @@ async function addZoomRegistrant(r) {
         org: r.azienda,
         job_title: r.ruolo,
         country: r.paese_iso,
-        ...(r.provincia ? { state: r.provincia } : {}),
         // El título debe coincidir exacto con la "Pregunta personalizada" del webinar en Zoom.
         custom_questions: [
           { title: "Consenso marketing", value: r.consent_marketing ? "Sì" : "No" },
@@ -103,12 +102,11 @@ module.exports = async function handler(req, res) {
   const lead = {};
   for (const f of [...REQUIRED, ...UTM_FIELDS]) lead[f] = clean(b[f]);
   lead.consent_marketing = b.consent_marketing === true;
-  // Provincia obligatoria solo para Italia; fuera queda "" (la columna es NOT NULL).
   const iso = ISO_RE.test(b.paese_iso) ? b.paese_iso : "IT";
-  lead.provincia = clean(b.provincia) || "";
+  // El form ya no pide provincia; la columna es NOT NULL, así que queda "".
+  lead.provincia = "";
   lead.telefono = clean(b.telefono) || null; // facoltativo
   const missing = REQUIRED.filter((f) => !lead[f]);
-  if (iso === "IT" && !lead.provincia) missing.push("provincia");
   if (missing.length || !EMAIL_RE.test(lead.email_aziendale) || (lead.telefono && !phoneOk(lead.telefono))) {
     return res.status(400).json({ error: "invalid_fields", fields: missing });
   }

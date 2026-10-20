@@ -543,15 +543,6 @@ body.modal-open { overflow: hidden; }
             </select>
           </div>
 
-          <!-- Solo para Italia: con otro país se oculta y deja de ser obligatoria -->
-          <div class="field" id="provincia-field">
-            <label for="provincia">Provincia*</label>
-            <select id="provincia" name="provincia" required>
-              <option value="" selected>Seleziona la provincia</option>
-            </select>
-            <p class="field-error" data-error-for="provincia">Seleziona la provincia.</p>
-          </div>
-
           <!-- Consenso marketing facoltativo: nel Copy Plan è un blocco separato dai "FIELDS (all required)"
                e in UE il consenso non può essere condizione per registrarsi al webinar. -->
           <div class="field consent">
@@ -617,7 +608,7 @@ body.modal-open { overflow: hidden; }
   <script>
 "use strict";
 /* BUILD v2: el HTML crudo YA es la página completa y segura.
-   El JS solo MEJORA (provincias, countdown si fecha confirmada,
+   El JS solo MEJORA (países, countdown si fecha confirmada,
    validación, envío). Nada depende de él para verse. */
 
 const CONFIG = {
@@ -627,27 +618,6 @@ const CONFIG = {
   WEBINAR_ISO: "2026-11-19T11:00:00+01:00",
   DATE_CONFIRMED: true,
 };
-
-const PROVINCE = [
-  "Agrigento", "Alessandria", "Ancona", "Aosta", "Arezzo", "Ascoli Piceno",
-  "Asti", "Avellino", "Bari", "Barletta-Andria-Trani", "Belluno", "Benevento",
-  "Bergamo", "Biella", "Bologna", "Bolzano", "Brescia", "Brindisi", "Cagliari",
-  "Caltanissetta", "Campobasso", "Caserta", "Catania",
-  "Catanzaro", "Chieti", "Como", "Cosenza", "Cremona", "Crotone", "Cuneo",
-  "Enna", "Fermo", "Ferrara", "Firenze", "Foggia", "Forlì-Cesena", "Frosinone",
-  "Genova", "Gorizia", "Grosseto", "Imperia", "Isernia", "L'Aquila", "La Spezia",
-  "Latina", "Lecce", "Lecco", "Livorno", "Lodi", "Lucca",
-  "Macerata", "Mantova", "Massa-Carrara", "Matera",
-  "Messina", "Milano", "Modena", "Monza e della Brianza", "Napoli", "Novara",
-  "Nuoro", "Oristano", "Padova", "Palermo",
-  "Parma", "Pavia", "Perugia", "Pesaro e Urbino", "Pescara", "Piacenza",
-  "Pisa", "Pistoia", "Pordenone", "Potenza", "Prato", "Ragusa", "Ravenna",
-  "Reggio Calabria", "Reggio Emilia", "Rieti", "Rimini", "Roma", "Rovigo",
-  "Salerno", "Sassari", "Savona", "Siena", "Siracusa", "Sondrio", "Sud Sardegna", "Taranto",
-  "Teramo", "Terni", "Torino", "Trapani", "Trento", "Treviso", "Trieste",
-  "Udine", "Varese", "Venezia", "Verbano-Cusio-Ossola", "Vercelli", "Verona",
-  "Vibo Valentia", "Vicenza", "Viterbo",
-];
 
 // ISO 3166-1 alpha-2: el nombre en italiano lo pone el navegador (Intl.DisplayNames).
 const COUNTRIES = (
@@ -665,24 +635,11 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const PHONE_RE = /^\+?[\d\s().-]{6,20}$/;
 const phoneOk = (s) => PHONE_RE.test(s) && /^(\D*\d){6,15}\D*$/.test(s);
 
-const isItaly = (form) => form.elements["paese"].value === "IT";
-
 function fillTokens() {
   document.querySelectorAll('[data-token="day"]').forEach((el) => {
     el.textContent = CONFIG.WEBINAR_DAY;
   });
   if (CONFIG.DATE_CONFIRMED) document.body.classList.add("date-ok");
-}
-
-function fillProvinces() {
-  const sel = document.getElementById("provincia");
-  if (!sel) return;
-  PROVINCE.forEach((p) => {
-    const opt = document.createElement("option");
-    opt.value = p;
-    opt.textContent = p;
-    sel.appendChild(opt);
-  });
 }
 
 function fillCountries() {
@@ -701,25 +658,6 @@ function fillCountries() {
       opt.selected = code === "IT";
       sel.appendChild(opt);
     });
-}
-
-function initCountryToggle() {
-  const form = document.getElementById("reg-form");
-  const field = document.getElementById("provincia-field");
-  const prov = document.getElementById("provincia");
-  if (!form || !field || !prov) return;
-  const sync = () => {
-    const it = isItaly(form);
-    field.hidden = !it;
-    prov.required = it;
-    if (!it) {
-      prov.value = "";
-      field.classList.remove("invalid");
-    }
-  };
-  form.elements["paese"].addEventListener("change", sync);
-  form.addEventListener("reset", () => setTimeout(sync, 0));
-  sync();
 }
 
 function getUtms() {
@@ -789,7 +727,6 @@ function validate(form) {
   ok = setInvalid("telefono", v("telefono") !== "" && !phoneOk(v("telefono"))) && ok;
   ok = setInvalid("azienda", v("azienda") === "") && ok;
   ok = setInvalid("ruolo", v("ruolo") === "") && ok;
-  ok = setInvalid("provincia", isItaly(form) && v("provincia") === "") && ok;
   return ok;
 }
 
@@ -868,7 +805,6 @@ function initForm() {
       // En Supabase se guarda el nombre ("Italia"); el código ISO es para Zoom.
       paese: form.elements["paese"].selectedOptions[0].textContent,
       paese_iso: form.elements["paese"].value,
-      provincia: isItaly(form) ? form.elements["provincia"].value : "",
       consent_marketing: form.elements["consent"].checked,
       ...getUtms(),
     };
@@ -893,9 +829,7 @@ function init() {
   if (__ofStarted) return;
   __ofStarted = true;
   fillTokens();
-  fillProvinces();
   fillCountries();
-  initCountryToggle();
   initCountdown();
   initHeader();
   initForm();
