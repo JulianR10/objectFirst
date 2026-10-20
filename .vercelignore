@@ -6,3 +6,7 @@
 supabase/
 .env
 .env*.local
+
+# Scripts locales y exports con datos personales
+scripts/
+exports/
