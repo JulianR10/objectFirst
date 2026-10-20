@@ -55,13 +55,36 @@ async function addZoomRegistrant(r) {
   );
   const data = await res.json().catch(() => ({}));
   // Email ya registrado: Zoom responde 201 con el mismo join_url → éxito.
-  // Más de 3 envíos del mismo email en un día: Zoom da 429 "for the registrant",
-  // pero esa persona ya está inscrita y tiene su link → también éxito.
+  // Más de 3 envíos del mismo email en un día: Zoom da 429 "for the registrant".
+  // Solo es éxito si de verdad está inscrito: un email "denied" también llega acá
+  // tras 3 intentos fallidos, y antes se le mostraba "Grazie" sin estar en Zoom.
   if (res.status === 429 && /for the registrant/i.test(data.message || "")) {
-    return { registrant_id: null, join_url: null, rate_limited: true };
+    const existing = await findRegistrant(token, r.email_aziendale);
+    if (existing) return { registrant_id: existing.id, join_url: existing.join_url, rate_limited: true };
   }
   if (!res.ok) throw new Error(`Zoom ${res.status} ${data.code || ""} ${data.message || ""}`.trim());
   return data;
+}
+
+// Busca el email entre los inscritos aprobados o pendientes del webinar.
+async function findRegistrant(token, email) {
+  const target = email.toLowerCase();
+  for (const status of ["approved", "pending"]) {
+    let next = "";
+    do {
+      const res = await fetch(
+        `https://api.zoom.us/v2/webinars/${process.env.ZOOM_WEBINAR_ID}/registrants` +
+          `?status=${status}&page_size=300&next_page_token=${encodeURIComponent(next)}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      if (!res.ok) throw new Error(`Zoom list ${res.status} ${await res.text().catch(() => "")}`);
+      const page = await res.json();
+      const hit = (page.registrants || []).find((x) => (x.email || "").toLowerCase() === target);
+      if (hit) return hit;
+      next = page.next_page_token || "";
+    } while (next);
+  }
+  return null;
 }
 
 async function saveLead(row) {
