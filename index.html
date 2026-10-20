@@ -273,7 +273,7 @@ body.date-ok .date-tbc { display: none; }
 .field { margin-bottom: 15px; }
 .field label, .field legend { display: block; font-weight: 500; font-size: 1rem; margin-bottom: 6px; color: var(--ink); }
 fieldset.field { border: 0; padding: 0; }
-.field input[type="text"], .field input[type="email"], .field select {
+.field input[type="text"], .field input[type="email"], .field input[type="tel"], .field select {
   width: 100%; border: 1px solid var(--line-strong); border-radius: 8px;
   padding: 12px 13px; font-size: 1rem; font-family: inherit;
   background: #ffffff; color: var(--ink);
@@ -519,6 +519,12 @@ body.modal-open { overflow: hidden; }
           </div>
 
           <div class="field">
+            <label for="telefono">Telefono</label>
+            <input type="tel" id="telefono" name="telefono" autocomplete="tel" inputmode="tel" placeholder="+39 333 123 4567">
+            <p class="field-error" data-error-for="telefono">Inserisci un numero di telefono valido.</p>
+          </div>
+
+          <div class="field">
             <label for="azienda">Azienda*</label>
             <input type="text" id="azienda" name="azienda" autocomplete="organization" required>
             <p class="field-error" data-error-for="azienda">Inserisci il nome dell&rsquo;azienda.</p>
@@ -533,11 +539,12 @@ body.modal-open { overflow: hidden; }
           <div class="field">
             <label for="paese">Paese*</label>
             <select id="paese" name="paese" required>
-              <option value="Italia" selected>Italia</option>
+              <option value="IT" selected>Italia</option>
             </select>
           </div>
 
-          <div class="field">
+          <!-- Solo para Italia: con otro país se oculta y deja de ser obligatoria -->
+          <div class="field" id="provincia-field">
             <label for="provincia">Provincia*</label>
             <select id="provincia" name="provincia" required>
               <option value="" selected>Seleziona la provincia</option>
@@ -642,7 +649,23 @@ const PROVINCE = [
   "Vibo Valentia", "Vicenza", "Viterbo",
 ];
 
+// ISO 3166-1 alpha-2: el nombre en italiano lo pone el navegador (Intl.DisplayNames).
+const COUNTRIES = (
+  "AD AE AF AG AI AL AM AO AR AS AT AU AW AX AZ BA BB BD BE BF BG BH BI BJ BL BM BN BO BQ BR BS BT BW BY BZ " +
+  "CA CC CD CF CG CH CI CK CL CM CN CO CR CU CV CW CX CY CZ DE DJ DK DM DO DZ EC EE EG EH ER ES ET FI FJ FK FM FO FR " +
+  "GA GB GD GE GF GG GH GI GL GM GN GP GQ GR GT GU GW GY HK HN HR HT HU ID IE IL IM IN IQ IR IS IT JE JM JO JP " +
+  "KE KG KH KI KM KN KP KR KW KY KZ LA LB LC LI LK LR LS LT LU LV LY MA MC MD ME MF MG MH MK ML MM MN MO MP MQ MR MS MT " +
+  "MU MV MW MX MY MZ NA NC NE NF NG NI NL NO NP NR NU NZ OM PA PE PF PG PH PK PL PM PN PR PS PT PW PY QA RE RO RS RU RW " +
+  "SA SB SC SD SE SG SH SI SJ SK SL SM SN SO SR SS ST SV SX SY SZ TC TD TG TH TJ TK TL TM TN TO TR TT TV TW TZ UA UG US " +
+  "UY UZ VA VC VE VG VI VN VU WF WS XK YE YT ZA ZM ZW"
+).split(" ");
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+// Prefijo + opcional, separadores habituales y entre 6 y 15 dígitos (E.164).
+const PHONE_RE = /^\+?[\d\s().-]{6,20}$/;
+const phoneOk = (s) => PHONE_RE.test(s) && /^(\D*\d){6,15}\D*$/.test(s);
+
+const isItaly = (form) => form.elements["paese"].value === "IT";
 
 function fillTokens() {
   document.querySelectorAll('[data-token="day"]').forEach((el) => {
@@ -660,6 +683,43 @@ function fillProvinces() {
     opt.textContent = p;
     sel.appendChild(opt);
   });
+}
+
+function fillCountries() {
+  const sel = document.getElementById("paese");
+  if (!sel || typeof Intl.DisplayNames !== "function") return; // queda solo Italia
+  const names = new Intl.DisplayNames(["it"], { type: "region" });
+  const coll = new Intl.Collator("it");
+  sel.innerHTML = "";
+  COUNTRIES
+    .map((code) => ({ code, name: names.of(code) }))
+    .sort((a, b) => coll.compare(a.name, b.name))
+    .forEach(({ code, name }) => {
+      const opt = document.createElement("option");
+      opt.value = code;
+      opt.textContent = name;
+      opt.selected = code === "IT";
+      sel.appendChild(opt);
+    });
+}
+
+function initCountryToggle() {
+  const form = document.getElementById("reg-form");
+  const field = document.getElementById("provincia-field");
+  const prov = document.getElementById("provincia");
+  if (!form || !field || !prov) return;
+  const sync = () => {
+    const it = isItaly(form);
+    field.hidden = !it;
+    prov.required = it;
+    if (!it) {
+      prov.value = "";
+      field.classList.remove("invalid");
+    }
+  };
+  form.elements["paese"].addEventListener("change", sync);
+  form.addEventListener("reset", () => setTimeout(sync, 0));
+  sync();
 }
 
 function getUtms() {
@@ -725,9 +785,11 @@ function validate(form) {
   ok = setInvalid("nome", v("nome") === "") && ok;
   ok = setInvalid("cognome", v("cognome") === "") && ok;
   ok = setInvalid("email", !EMAIL_RE.test(v("email"))) && ok;
+  // Facoltativo: solo se valida si lo completaron.
+  ok = setInvalid("telefono", v("telefono") !== "" && !phoneOk(v("telefono"))) && ok;
   ok = setInvalid("azienda", v("azienda") === "") && ok;
   ok = setInvalid("ruolo", v("ruolo") === "") && ok;
-  ok = setInvalid("provincia", v("provincia") === "") && ok;
+  ok = setInvalid("provincia", isItaly(form) && v("provincia") === "") && ok;
   return ok;
 }
 
@@ -800,10 +862,13 @@ function initForm() {
       nome: form.elements["nome"].value.trim(),
       cognome: form.elements["cognome"].value.trim(),
       email_aziendale: form.elements["email"].value.trim(),
+      telefono: form.elements["telefono"].value.trim(),
       azienda: form.elements["azienda"].value.trim(),
       ruolo,
-      paese: form.elements["paese"].value,
-      provincia: form.elements["provincia"].value,
+      // En Supabase se guarda el nombre ("Italia"); el código ISO es para Zoom.
+      paese: form.elements["paese"].selectedOptions[0].textContent,
+      paese_iso: form.elements["paese"].value,
+      provincia: isItaly(form) ? form.elements["provincia"].value : "",
       consent_marketing: form.elements["consent"].checked,
       ...getUtms(),
     };
@@ -829,6 +894,8 @@ function init() {
   __ofStarted = true;
   fillTokens();
   fillProvinces();
+  fillCountries();
+  initCountryToggle();
   initCountdown();
   initHeader();
   initForm();

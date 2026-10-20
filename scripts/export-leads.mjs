@@ -10,7 +10,7 @@ const env = process.env;
 
 // Orden de columnas en el CSV; las que no estén acá se agregan al final.
 const FIRST = [
-  "created_at", "nome", "cognome", "email_aziendale", "azienda", "ruolo", "paese", "provincia",
+  "created_at", "nome", "cognome", "email_aziendale", "telefono", "azienda", "ruolo", "paese", "provincia",
   "consent_marketing", "asistio", "minutos_conectado", "primera_conexion",
   "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "referrer", "landing_url",
   "zoom_status",

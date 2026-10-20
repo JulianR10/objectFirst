@@ -7,6 +7,11 @@ alter table public.webinar_registrations_italia
   add column if not exists zoom_error text,
   add column if not exists referrer text;      -- sitio de origen si no hay UTMs
 
+-- 1b. Teléfono (opcional en el formulario). Ejecutar ANTES de deployar el cambio,
+--     si no el insert de /api/register falla por columna inexistente.
+alter table public.webinar_registrations_italia
+  add column if not exists telefono text;
+
 -- 2. DESPUÉS de verificar que /api/register funciona en producción:
 --    quitar el INSERT público, para que nadie se salte Zoom usando la key publicable.
 --    /api/register usa la service_role key, que ignora RLS.

@@ -6,7 +6,10 @@
 
 const TABLE = "webinar_registrations_italia";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-const REQUIRED = ["nome", "cognome", "email_aziendale", "azienda", "ruolo", "paese", "provincia"];
+const REQUIRED = ["nome", "cognome", "email_aziendale", "azienda", "ruolo", "paese"];
+const ISO_RE = /^[A-Z]{2}$/;
+const PHONE_RE = /^\+?[\d\s().-]{6,20}$/;
+const phoneOk = (s) => PHONE_RE.test(s) && /^(\D*\d){6,15}\D*$/.test(s);
 const UTM_FIELDS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "landing_url", "referrer"];
 
 // El token S2S dura 1 h: se reutiliza mientras la instancia siga caliente.
@@ -39,10 +42,11 @@ async function addZoomRegistrant(r) {
         first_name: r.nome,
         last_name: r.cognome,
         email: r.email_aziendale,
+        ...(r.telefono ? { phone: r.telefono } : {}),
         org: r.azienda,
         job_title: r.ruolo,
-        country: "IT",
-        state: r.provincia,
+        country: r.paese_iso,
+        ...(r.provincia ? { state: r.provincia } : {}),
         // El título debe coincidir exacto con la "Pregunta personalizada" del webinar en Zoom.
         custom_questions: [
           { title: "Consenso marketing", value: r.consent_marketing ? "Sì" : "No" },
@@ -99,15 +103,20 @@ module.exports = async function handler(req, res) {
   const lead = {};
   for (const f of [...REQUIRED, ...UTM_FIELDS]) lead[f] = clean(b[f]);
   lead.consent_marketing = b.consent_marketing === true;
+  // Provincia obligatoria solo para Italia; fuera queda "" (la columna es NOT NULL).
+  const iso = ISO_RE.test(b.paese_iso) ? b.paese_iso : "IT";
+  lead.provincia = clean(b.provincia) || "";
+  lead.telefono = clean(b.telefono) || null; // facoltativo
   const missing = REQUIRED.filter((f) => !lead[f]);
-  if (missing.length || !EMAIL_RE.test(lead.email_aziendale)) {
+  if (iso === "IT" && !lead.provincia) missing.push("provincia");
+  if (missing.length || !EMAIL_RE.test(lead.email_aziendale) || (lead.telefono && !phoneOk(lead.telefono))) {
     return res.status(400).json({ error: "invalid_fields", fields: missing });
   }
 
   let zoom = null;
   let zoomError = null;
   try {
-    zoom = await addZoomRegistrant(lead);
+    zoom = await addZoomRegistrant({ ...lead, paese_iso: iso });
   } catch (err) {
     zoomError = err.message;
     console.error("[register] zoom", zoomError);
