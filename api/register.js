@@ -6,6 +6,11 @@
 
 const TABLE = "webinar_registrations_italia";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+// Dominios de email personal: el form pide email aziendale (decisión del cliente).
+const FREE_DOMAINS = new Set((
+  "gmail.com googlemail.com outlook.com outlook.it hotmail.com hotmail.it live.com live.it msn.com yahoo.com yahoo.it ymail.com icloud.com me.com mac.com aol.com proton.me protonmail.com gmx.com gmx.net libero.it virgilio.it alice.it tim.it tin.it tiscali.it fastwebnet.it email.it inwind.it iol.it aruba.it pec.it legalmail.it mail.com yandex.com zoho.com"
+).split(" "));
+const isWorkEmail = (s) => EMAIL_RE.test(s) && !FREE_DOMAINS.has(s.split("@")[1].toLowerCase());
 const REQUIRED = ["nome", "cognome", "email_aziendale", "azienda", "ruolo", "paese"];
 const ISO_RE = /^[A-Z]{2}$/;
 const PHONE_RE = /^\+?[\d\s().-]{6,20}$/;
@@ -131,7 +136,7 @@ module.exports = async function handler(req, res) {
   lead.telefono = clean(b.telefono) || null; // facoltativo
   const missing = REQUIRED.filter((f) => !lead[f]);
   if (!lead.consent_marketing) missing.push("consent_marketing"); // obligatorio (decisión del cliente)
-  if (missing.length || !EMAIL_RE.test(lead.email_aziendale) || (lead.telefono && !phoneOk(lead.telefono))) {
+  if (missing.length || !isWorkEmail(lead.email_aziendale) || (lead.telefono && !phoneOk(lead.telefono))) {
     return res.status(400).json({ error: "invalid_fields", fields: missing });
   }
 

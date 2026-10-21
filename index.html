@@ -515,7 +515,7 @@ body.modal-open { overflow: hidden; }
           <div class="field">
             <label for="email">Email aziendale*</label>
             <input type="email" id="email" name="email" autocomplete="email" required>
-            <p class="field-error" data-error-for="email">Inserisci un indirizzo email valido.</p>
+            <p class="field-error" data-error-for="email">Inserisci un indirizzo email aziendale valido (non Gmail, Libero, Outlook…).</p>
           </div>
 
           <div class="field">
@@ -632,6 +632,11 @@ const COUNTRIES = (
 ).split(" ");
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+// Dominios de email personal: el form pide email aziendale (decisión del cliente).
+const FREE_DOMAINS = new Set((
+  "gmail.com googlemail.com outlook.com outlook.it hotmail.com hotmail.it live.com live.it msn.com yahoo.com yahoo.it ymail.com icloud.com me.com mac.com aol.com proton.me protonmail.com gmx.com gmx.net libero.it virgilio.it alice.it tim.it tin.it tiscali.it fastwebnet.it email.it inwind.it iol.it aruba.it pec.it legalmail.it mail.com yandex.com zoho.com"
+).split(" "));
+const isWorkEmail = (s) => EMAIL_RE.test(s) && !FREE_DOMAINS.has(s.split("@")[1].toLowerCase());
 // Prefijo + opcional, separadores habituales y entre 6 y 15 dígitos (E.164).
 const PHONE_RE = /^\+?[\d\s().-]{6,20}$/;
 const phoneOk = (s) => PHONE_RE.test(s) && /^(\D*\d){6,15}\D*$/.test(s);
@@ -715,6 +720,13 @@ function setInvalid(id, invalid) {
   const input = document.getElementById(id);
   const field = input.closest(".field");
   if (field) field.classList.toggle("invalid", invalid);
+  // Lectores de pantalla: marcan el campo y leen su mensaje de error.
+  const err = field && field.querySelector(".field-error");
+  input.setAttribute("aria-invalid", invalid);
+  if (err) {
+    err.id = `${id}-error`;
+    input.setAttribute("aria-describedby", err.id);
+  }
   return !invalid;
 }
 
@@ -723,7 +735,7 @@ function validate(form) {
   const v = (id) => form.elements[id].value.trim();
   ok = setInvalid("nome", v("nome") === "") && ok;
   ok = setInvalid("cognome", v("cognome") === "") && ok;
-  ok = setInvalid("email", !EMAIL_RE.test(v("email"))) && ok;
+  ok = setInvalid("email", !isWorkEmail(v("email"))) && ok;
   // Facoltativo: solo se valida si lo completaron.
   ok = setInvalid("telefono", v("telefono") !== "" && !phoneOk(v("telefono"))) && ok;
   ok = setInvalid("azienda", v("azienda") === "") && ok;
@@ -785,8 +797,12 @@ function initForm() {
     // Zoom envía el link personale por email (confirmación + reminders).
     openModal(successOverlay);
   };
+  // Tras el primer envío fallido, los errores se actualizan mientras se corrige.
+  let tried = false;
+  form.addEventListener("input", () => { if (tried) validate(form); });
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    tried = true;
     if (!validate(form)) {
       const bad = form.querySelector(".field.invalid input, .field.invalid select");
       if (bad) bad.focus();
@@ -815,6 +831,7 @@ function initForm() {
     try {
       await submitRegistration(payload);
       form.reset();
+      tried = false;
       showSuccess(false);
     } catch (err) {
       console.error(err);
