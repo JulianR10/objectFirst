@@ -1,7 +1,7 @@
 # Object First — Webinar Landing
 
 Landing estática (un solo `index.html`) del webinar
-**"Sopravvivere agli attacchi informatici basati sull'IA: costruire la resilienza per garantire il ripristino e il benessere dei team IT"** — jueves 19 de noviembre de 2026, 11:00 CET.
+**"Sopravvivere agli attacchi informatici basati sull'IA: costruire la resilienza per garantire il ripristino e il benessere dei team IT"** — jueves 26 de noviembre de 2026, 11:00 CET.
 
 - `index.html` → página completa (HTML + CSS + JS inline, sin build)
 - `logo.png` (nav y footer), `favicon.svg`, `og-cover.png`, `images/` (fotos de los speakers) → assets

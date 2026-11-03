@@ -5,7 +5,7 @@
 
 const { buildLeadsCsv } = require("../lib/leads-csv.js");
 
-const LAST_DAY = "2026-11-20"; // el envío de ese día ya trae la asistencia del webinar (19/11)
+const LAST_DAY = "2026-11-27"; // el envío de ese día ya trae la asistencia del webinar (26/11)
 const DAY_MS = 24 * 60 * 60 * 1000;
 
 module.exports = async function handler(req, res) {
@@ -36,7 +36,7 @@ module.exports = async function handler(req, res) {
       body: JSON.stringify({
         from: process.env.REPORT_FROM,
         to: process.env.REPORT_RECIPIENTS.split(",").map((s) => s.trim()).filter(Boolean),
-        subject: `Iscritti webinar 19/11 — ${today}: ${valid.length} (+${fresh})`,
+        subject: `Iscritti webinar 26/11 — ${today}: ${valid.length} (+${fresh})`,
         html: `<p>${lines.join("<br>")}</p><p>In allegato il CSV completo.</p>`,
         attachments: [{ filename: `inscritos_${today}.csv`, content: Buffer.from(csv).toString("base64") }],
       }),
