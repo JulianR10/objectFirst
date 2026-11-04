@@ -5,7 +5,7 @@ Landing estática (un solo `index.html`) del webinar
 
 - `index.html` → página completa (HTML + CSS + JS inline, sin build)
 - `logo.png` (nav y footer), `favicon.svg`, `og-cover.png`, `images/` (fotos de los speakers) → assets
-- `og-cover.png` → tarjeta 1200×630 para previews sociales (regenerada 4 Nov 2026: fecha 26 nov; URLs con ?v=2 para refrescar caché)
+- `og-cover.png` → tarjeta 1200×630 para previews sociales (regenerada 4 Nov 2026: fecha 26 nov; logo corregido; URLs con ?v=3 para refrescar caché)
 - `api/register.js` → el form registra en Zoom Webinars y guarda en Supabase · `api/keepalive.js` y `api/daily-export.js` → crons diarios
 - Docs internas, solo en local (repo público): `INTEGRACION_ZOOM.md` (resumen para el cliente + técnico)
 - Ramas:
