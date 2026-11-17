@@ -1,5 +1,6 @@
 "use strict";
-/* GET /api/daily-export — lo llama el cron diario de Vercel (vercel.json) a las 07:00 UTC.
+/* GET /api/daily-export — lo llama el cron diario de Vercel (vercel.json) a las 07:00 y 13:00 UTC
+   (8:00 y 14:00 Madrid; dos entradas con path distinto porque Hobby solo admite crons diarios).
    Manda por Resend el CSV completo de inscritos a REPORT_RECIPIENTS, hasta el día después del webinar.
    Vercel firma el cron con "Authorization: Bearer CRON_SECRET": sin eso no se envía nada (datos personales). */
 
