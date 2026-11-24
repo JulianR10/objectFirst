@@ -1,4 +1,5 @@
-/* Exporta los inscritos de Supabase a CSV, con la asistencia de Zoom si el webinar ya pasó.
+/* Exporta los inscritos de Supabase a CSV, con la asistencia de Zoom si el webinar ya pasó,
+   y las descargas del eBook a exports/ebook_descargas_<fecha>.csv.
    Uso:  node --env-file=.env.local scripts/export-leads.mjs
    Sale en exports/inscritos_<fecha>.csv. La lógica vive en lib/leads-csv.js (la comparte el cron diario). */
 
@@ -11,3 +12,8 @@ mkdirSync("exports", { recursive: true });
 const file = `exports/inscritos_${new Date().toISOString().slice(0, 10)}.csv`;
 writeFileSync(file, csv);
 console.log(`${leads.length} inscritos → ${file}${attendance ? ` (${attendance.size} asistentes en Zoom)` : ""}`);
+
+const downloads = await leadsCsv.buildDownloadsCsv(leads);
+const dfile = file.replace("inscritos_", "ebook_descargas_");
+writeFileSync(dfile, downloads.csv);
+console.log(`${downloads.rows.length} descargas del eBook → ${dfile}`);

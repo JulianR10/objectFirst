@@ -24,6 +24,17 @@
       ],
       "destination": "https://www.objectfirst.online/:path",
       "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "ebook.objectfirst.online"
+        }
+      ],
+      "destination": "/scarica/",
+      "permanent": false
     }
   ]
 }
