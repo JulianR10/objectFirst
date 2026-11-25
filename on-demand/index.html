@@ -244,7 +244,7 @@ const errorText = (err) => (err.code === "not_yet" ? NOT_YET : "Ops! Qualcosa è
     }
   }
   // El servidor no entrega el vídeo antes de las 12:00 del 26/11; esto cubre lo guardado en el navegador.
-  if (saved && Date.now() >= Date.parse("2026-11-26T12:00:00+01:00")) showVideo(saved, false);
+  if (saved && Date.now() >= Date.parse("2026-11-25T00:00:00+01:00")) showVideo(saved, false);
 })();
 
 let tried = false;

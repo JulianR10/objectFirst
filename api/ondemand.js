@@ -8,7 +8,8 @@ const { isWorkEmail, UTM_FIELDS, clean, readBody, insertRow } = require("../lib/
 
 const REQUIRED = ["nome", "cognome", "email_aziendale", "azienda", "ruolo"];
 // Antes de que termine el webinar no se entrega el embed a nadie (ni con clave ni con form).
-const AVAILABLE_AT = Date.parse("2026-11-26T12:00:00+01:00");
+// Desbloqueado el 25/11 para revisarlo con el cliente (antes: 2026-11-26T12:00:00+01:00).
+const AVAILABLE_AT = Date.parse("2026-11-25T00:00:00+01:00");
 
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
