@@ -5,8 +5,8 @@ Sitio estático sin build + Vercel Functions. Proyecto Vercel `object-first`, re
 | Dominio | Página | Backend |
 |---|---|---|
 | www.objectfirst.online | `index.html`: landing + form de inscripción | `api/register.js` → Zoom + Supabase |
-| ebook.objectfirst.online | `scarica/`: form → descarga del eBook Omdia | `api/ebook.js` → URL firmada (10 min) del PDF en bucket privado `ebook` |
-| webinar.objectfirst.online | `on-demand/`: form o enlace de inscritos `?k=` → grabación | `api/ondemand.js` (env `ONDEMAND_VIDEO_URL`, `ONDEMAND_KEY`) |
+| ebook.objectfirst.online | `scarica/`: form → descarga del eBook Omdia | `api/ebook.js` → URL firmada (1 h) del PDF en bucket privado `ebook` |
+| webinar.objectfirst.online | `on-demand/`: form o enlace de inscritos `?k=` → grabación. Botón eBook: con el email del form descarga directo; sin email, al form de `scarica/` | `api/ondemand.js` (env `ONDEMAND_VIDEO_URL`, `ONDEMAND_KEY`) |
 
 Corte automático el **26/11 a las 12:00 CET**: `middleware.js` redirige la portada al on demand y `api/ondemand.js` empieza a entregar el vídeo.
 

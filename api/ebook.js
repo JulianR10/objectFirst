@@ -1,13 +1,13 @@
 "use strict";
 /* POST /api/ebook — form de ebook.objectfirst.online.
-   Guarda la descarga en Supabase y devuelve una URL firmada (10 min) del PDF,
+   Guarda la descarga en Supabase y devuelve una URL firmada (1 h) del PDF,
    que vive en el bucket privado "ebook": tiene licencia de TechTarget, no puede ser público. */
 
 const { isWorkEmail, UTM_FIELDS, clean, readBody, insertRow } = require("../lib/form.js");
 
 const BUCKET_PATH = "ebook/Omdia-Ebook.pdf";
 const DOWNLOAD_NAME = "Omdia-eBook-Recovery-without-Compromise.pdf";
-const EXPIRES_S = 600;
+const EXPIRES_S = 3600; // 1 h: el botón de respaldo de la página de gracias sigue funcionando un rato
 
 async function signedUrl() {
   const res = await fetch(`${process.env.SUPABASE_URL}/storage/v1/object/sign/${BUCKET_PATH}`, {
