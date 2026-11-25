@@ -35,6 +35,17 @@
       ],
       "destination": "/scarica/",
       "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "webinar.objectfirst.online"
+        }
+      ],
+      "destination": "/on-demand/",
+      "permanent": false
     }
   ]
 }
