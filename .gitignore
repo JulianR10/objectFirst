@@ -18,3 +18,6 @@ dist/
 # Exports con datos personales de los inscritos
 exports/
 zoom-backup/
+
+# Doc interna con datos personales y la clave del on demand: nunca al repo público
+INTEGRACION_ZOOM.md
