@@ -1,12 +1,14 @@
 "use strict";
 /* GET /api/daily-export — lo llama el cron diario de Vercel (vercel.json) a las 07:00 y 13:00 UTC
    (8:00 y 14:00 Madrid; dos entradas con path distinto porque Hobby solo admite crons diarios).
-   Manda por Resend los CSV de inscritos y de descargas del eBook a REPORT_RECIPIENTS, hasta el día después del webinar.
+   Manda por Resend los CSV de inscritos y de descargas del eBook a REPORT_RECIPIENTS, hasta la mañana del webinar.
    Vercel firma el cron con "Authorization: Bearer CRON_SECRET": sin eso no se envía nada (datos personales). */
 
 const { buildLeadsCsv, buildDownloadsCsv } = require("../lib/leads-csv.js");
 
-const LAST_DAY = "2026-11-27"; // el envío de ese día ya trae la asistencia del webinar (26/11)
+// Último envío: el de las 8:00 del 26/11 (día del webinar). En Hobby el cron puede llegar
+// hasta 59 min tarde, por eso el corte es a las 10:00 y no a las 8:00; el de las 14:00 ya no sale.
+const STOP_AT = Date.parse("2026-11-26T10:00:00+01:00");
 const DAY_MS = 24 * 60 * 60 * 1000;
 
 module.exports = async function handler(req, res) {
@@ -16,7 +18,7 @@ module.exports = async function handler(req, res) {
 
   // "sv-SE" da el formato YYYY-MM-DD
   const today = new Date().toLocaleDateString("sv-SE", { timeZone: "Europe/Madrid" });
-  if (today > LAST_DAY) return res.status(200).json({ ok: true, skipped: true });
+  if (Date.now() >= STOP_AT) return res.status(200).json({ ok: true, skipped: true });
 
   try {
     const { csv, leads, attendance } = await buildLeadsCsv();
