@@ -27,7 +27,10 @@ body {
 [hidden] { display: none !important; }
 .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
 .site-header { background: var(--purple); border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
-.header-inner { display: flex; align-items: center; padding-top: 12px; padding-bottom: 12px; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 12px; padding-bottom: 12px; }
+.header-nav { display: flex; gap: 22px; }
+.header-nav a { color: #fff; text-decoration: none; font-weight: 500; }
+.header-nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .brand { display: inline-flex; padding: 6px; margin-left: -6px; line-height: 0; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
@@ -125,6 +128,7 @@ h1 { font-size: clamp(2.4375rem, 5vw, 3.0625rem); font-weight: 600; line-height:
   .thanks { padding-top: 48px; padding-bottom: 72px; }
 }
 @media (max-width: 560px) {
+  .header-nav { gap: 14px; font-size: 0.8125rem; }
   .field-row { grid-template-columns: 1fr; }
   .stat-group { grid-template-columns: 1fr; gap: 8px; }
   .box { flex-direction: column; align-items: flex-start; }
