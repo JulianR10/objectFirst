@@ -218,9 +218,12 @@ async function unlock(payload) {
     body: JSON.stringify(payload),
   });
   const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(`ondemand ${res.status}`);
+  if (!res.ok) throw Object.assign(new Error(`ondemand ${res.status}`), { code: data.error });
   return data.video;
 }
+
+const NOT_YET = "La registrazione sarà disponibile dalle 12:00 di giovedì 26 novembre.";
+const errorText = (err) => (err.code === "not_yet" ? NOT_YET : "Ops! Qualcosa è andato storto. Riprova tra qualche istante.");
 
 // Enlace de inscritos (?k=…): sin form. Si la clave no vale, queda el form.
 (async () => {
@@ -230,9 +233,13 @@ async function unlock(payload) {
     try {
       const video = await unlock({ k: q.get("k") });
       if (video) return showVideo(video, false);
-    } catch (err) { console.warn(err); }
+    } catch (err) {
+      console.warn(err);
+      if (err.code === "not_yet") formError.textContent = NOT_YET;
+    }
   }
-  if (saved) showVideo(saved, false);
+  // El servidor no entrega el vídeo antes de las 12:00 del 26/11; esto cubre lo guardado en el navegador.
+  if (saved && Date.now() >= Date.parse("2026-11-26T12:00:00+01:00")) showVideo(saved, false);
 })();
 
 let tried = false;
@@ -260,7 +267,7 @@ form.addEventListener("submit", async (e) => {
     showVideo(video, true);
   } catch (err) {
     console.error(err);
-    formError.textContent = "Ops! Qualcosa è andato storto. Riprova tra qualche istante.";
+    formError.textContent = errorText(err);
   } finally {
     btn.disabled = false;
     btn.textContent = "Guarda ora";

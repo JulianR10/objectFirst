@@ -7,12 +7,15 @@
 const { isWorkEmail, UTM_FIELDS, clean, readBody, insertRow } = require("../lib/form.js");
 
 const REQUIRED = ["nome", "cognome", "email_aziendale", "azienda", "ruolo"];
+// Antes de que termine el webinar no se entrega el embed a nadie (ni con clave ni con form).
+const AVAILABLE_AT = Date.parse("2026-11-26T12:00:00+01:00");
 
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return res.status(405).json({ error: "method_not_allowed" });
   }
+  if (Date.now() < AVAILABLE_AT) return res.status(503).json({ error: "not_yet" });
   const video = process.env.ONDEMAND_VIDEO_URL;
   if (!video) return res.status(503).json({ error: "video_not_ready" });
 
