@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- eBook Omdia — ebook.objectfirst.online (vercel.json redirige / → /scarica/). Estilos = subconjunto de /index.html. -->
+<!-- eBook Omdia — ebook.objectfirst.online (vercel.json redirige / → /scarica/). Estilos en /risorse.css. -->
 <html lang="it">
 <head>
   <meta charset="UTF-8">
@@ -20,123 +20,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preload" href="/fonts/Graphik-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/Graphik-Semibold.woff2" as="font" type="font/woff2" crossorigin>
-  <style>
-@font-face { font-family: "Graphik"; src: url("/fonts/Graphik-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: "Graphik"; src: url("/fonts/Graphik-Medium.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
-@font-face { font-family: "Graphik"; src: url("/fonts/Graphik-Semibold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
-/* Tokens oficiales: Brand Guidelines v1.0 (2025), los mismos de la landing. */
-:root {
-  --purple: #5b00b3;
-  --orange: #ff6131;
-  --ink: #161515;
-  --muted: #666666;
-  --line: #e8e8e8;
-  --line-strong: #c9c9c9;
-  --light: #f8f8f8;
-  --green: #00ad4e;
-  --red: #e03400;
-  --radius: 16px;
-  --wrap: 1140px;
-  --font: "Graphik", "Inter Tight", Arial, sans-serif;
-  --ease: cubic-bezier(0.22, 0.9, 0.28, 1);
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0; font-family: var(--font); font-feature-settings: "salt" on;
-  color: var(--ink); background: #fff; line-height: 1.4; -webkit-font-smoothing: antialiased;
-}
-[hidden] { display: none !important; }
-.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
-.site-header { background: var(--purple); border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
-.header-inner { display: flex; align-items: center; padding-top: 12px; padding-bottom: 12px; }
-.brand { display: inline-flex; padding: 6px; margin-left: -6px; line-height: 0; }
-.btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  background: var(--orange); color: #fff; font: inherit; font-weight: 600; font-size: 1rem; text-decoration: none;
-  border: 0; border-radius: 0; padding: 15px 36px; cursor: pointer; text-align: center;
-  transition: transform 0.25s var(--ease), filter 0.25s var(--ease);
-}
-.btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
-.btn::after { content: "→"; margin-left: 12px; font-size: 1.1em; line-height: 1; }
-.btn[disabled] { opacity: 0.7; cursor: wait; transform: none; }
-.btn-full { width: 100%; }
-.btn-outline { background: transparent; color: var(--purple); box-shadow: inset 0 0 0 2px var(--purple); }
-.btn:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
-.badge {
-  display: inline-block; text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.8125rem; font-weight: 600;
-  color: #fff; background: var(--purple); border-radius: 999px; padding: 8px 18px; margin-bottom: 24px;
-}
-h1 { font-size: clamp(2.4375rem, 5vw, 3.0625rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.03em; margin: 0 0 20px; }
-.lead { font-size: 1.25rem; line-height: 1.45; margin: 0 0 28px; }
-.content-grid { display: grid; grid-template-columns: 1fr 400px; gap: 56px; padding-top: 80px; padding-bottom: 96px; align-items: start; }
-.takeaways { display: grid; gap: 12px; margin: 0 0 36px; padding: 0; list-style: none; }
-.takeaways li { position: relative; padding-left: 30px; font-size: 1.125rem; font-weight: 500; }
-.takeaways li::before { content: "→"; position: absolute; left: 0; color: var(--orange); font-weight: 600; }
-/* Stat con la fuente sobre el borde inferior, como en la landing. */
-.stat-group { position: relative; display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: center; padding: 28px 24px 36px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--light); }
-.stat-num { margin: 0; font-size: 3.0625rem; font-weight: 600; letter-spacing: -0.04em; }
-.stat-lab { margin: 0; color: var(--muted); }
-.stat-src { position: absolute; left: 50%; bottom: 0; transform: translate(-50%, 50%); margin: 0; padding: 4px 12px; font-size: 0.8125rem; color: var(--muted); white-space: nowrap; background: #fff; border: 1px solid var(--line); border-radius: 999px; }
-.form-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 24px 64px rgba(22, 21, 21, 0.12); padding: 34px 30px; }
-.form-card h2 { margin: 0 0 6px; font-size: 1.5625rem; line-height: 1.3; letter-spacing: -0.02em; font-weight: 600; }
-.form-meta { margin: 0 0 22px; color: var(--muted); font-size: 0.8125rem; }
-.field { margin-bottom: 15px; }
-.field > label { display: block; font-weight: 500; margin-bottom: 6px; }
-.field input[type="email"] {
-  width: 100%; border: 1px solid var(--line-strong); border-radius: 8px; padding: 12px 13px;
-  font: inherit; font-size: max(1rem, 1em); background: #fff; color: var(--ink);
-  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
-}
-.field input[type="email"]:focus { border-color: var(--orange); box-shadow: 0 0 0 1px var(--orange); outline: none; }
-.checkbox { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
-.checkbox input { margin-top: 4px; accent-color: var(--orange); width: 17px; height: 17px; flex-shrink: 0; }
-.consent, .under-btn { font-size: 0.8125rem; color: var(--muted); }
-.under-btn a { color: var(--purple); }
-.field-error, .form-error { display: none; color: var(--red); font-size: 0.8125rem; margin: 6px 0 0; }
-.field.invalid .field-error, .form-error:not(:empty) { display: block; }
-.form-error { margin: 0 0 12px; }
-.field.invalid input[type="email"] { border-color: var(--red); }
-.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-.noscript-note { color: var(--red); background: var(--light); border: 1px solid var(--red); border-radius: 8px; padding: 10px 14px; }
-/* Paso 2: agradecimiento + descarga. */
-.thanks { padding-top: 72px; padding-bottom: 96px; max-width: 760px; }
-.thanks h1:focus { outline: none; }
-.check svg { width: 64px; height: 64px; fill: none; stroke: var(--green); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
-.check circle { stroke-dasharray: 157; stroke-dashoffset: 157; animation: draw 0.7s var(--ease) forwards; }
-.check path { stroke-dasharray: 40; stroke-dashoffset: 40; animation: draw 0.45s var(--ease) 0.55s forwards; }
-@keyframes draw { to { stroke-dashoffset: 0; } }
-.box { display: flex; gap: 24px; align-items: center; border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; margin-top: 24px; box-shadow: 0 10px 28px rgba(22, 21, 21, 0.06); }
-.box h2 { margin: 0 0 4px; font-size: 1.25rem; font-weight: 600; letter-spacing: -0.01em; }
-.box p { margin: 0 0 16px; color: var(--muted); }
-.box-body { flex: 1; }
-.cover {
-  flex: 0 0 104px; aspect-ratio: 3 / 4; display: flex; flex-direction: column; justify-content: space-between;
-  padding: 12px; background: var(--purple); color: #fff; border-radius: 8px; font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.08em;
-}
-.cover strong { font-size: 1.5625rem; letter-spacing: -0.02em; }
-.box--contact { background: var(--light); box-shadow: none; }
-.site-footer { border-top: 1px solid var(--line); padding: 44px 0; }
-.footer-inner { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
-.footer-brand { display: flex; align-items: center; gap: 14px; }
-.footer-brand img { height: 30px; width: auto; display: block; }
-.tagline { font-weight: 600; border-left: 1px solid var(--line); padding-left: 14px; }
-.legal { width: 100%; font-size: 0.8125rem; margin: 8px 0 0; color: var(--muted); }
-.legal a { color: var(--muted); text-decoration: none; }
-.legal a:hover { color: var(--purple); }
-@media (max-width: 920px) {
-  .content-grid { grid-template-columns: 1fr; gap: 48px; padding-top: 56px; padding-bottom: 72px; }
-  .thanks { padding-top: 48px; padding-bottom: 72px; }
-}
-@media (max-width: 560px) {
-  .stat-group { grid-template-columns: 1fr; gap: 8px; }
-  .box { flex-direction: column; align-items: flex-start; }
-  .cover { flex-basis: auto; width: 88px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .btn { transition: none; }
-  .check circle, .check path { animation: none; stroke-dashoffset: 0; }
-}
-  </style>
+  <link rel="stylesheet" href="/risorse.css">
 </head>
 <body>
 
